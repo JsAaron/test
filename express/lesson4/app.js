@@ -1,11 +1,11 @@
 var eventproxy = require('eventproxy');
 var superagent = require('superagent');
-var cheerio = require('cheerio');
-var url = require('url');
-var express = require('express');
-var app = express();
+var cheerio    = require('cheerio');
+var url        = require('url');
+var express    = require('express');
+var app        = express();
 
-var cnodeUrl = 'https://cnodejs.org/';
+var cnodeUrl   = 'https://cnodejs.org/';
 
 superagent.get(cnodeUrl)
   .end(function (err, res) {
@@ -34,8 +34,8 @@ superagent.get(cnodeUrl)
         });
       });
 
-      console.log('final:');
-      console.log(topics);
+    //  console.log('final:');
+    //  console.log(topics);
     });
 
     topicUrls.forEach(function (topicUrl) {
