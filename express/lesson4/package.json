@@ -1,0 +1,17 @@
+{
+  "name": "lesson4",
+  "version": "1.0.0",
+  "description": "使用 eventproxy 控制并发",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.17.0",
+    "eventproxy": "^0.3.1",
+    "express": "^4.12.3",
+    "superagent": "^0.20.0"
+  }
+}
