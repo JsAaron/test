@@ -11,5 +11,12 @@ $.ajax({
     success:function(rs){
         console.log(arguments)
     },
-    error:function(){}
-})
+    error:function(){
+        console.log(arguments)
+    }
+});
+
+
+
+
+
