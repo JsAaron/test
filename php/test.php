@@ -6,6 +6,25 @@
  * Time: 21:01
  */
 
+require("main.php");
+
+
+$v = array();
+
+function aa(&$v){
+    global $var ;
+    $var = 311;
+
+}
+
+aa();
+echo $v;
+
+
+exit();
+
+
+
 //echo phpinfo();
 
 //打开sqlite数据库
