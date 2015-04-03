@@ -9,20 +9,6 @@
 require("main.php");
 
 
-$v = array();
-
-function aa(&$v){
-    global $var ;
-    $var = 311;
-
-}
-
-aa();
-echo $v;
-
-
-exit();
-
 
 
 //echo phpinfo();
