@@ -10,9 +10,6 @@ require("main.php");
 
 
 
-
-//echo phpinfo();
-
 //打开sqlite数据库
 //$db = @sqlite_open("MM.sqlite", 0666, $error); // 不支持
 $db = new PDO('sqlite:xxtebook.db');
