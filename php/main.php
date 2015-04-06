@@ -19,8 +19,6 @@ class StaticExample{
 
     static public $a = 0;
 
-    const ACB = 1;
-
     static function sayHellow(){
         self::$a++;
         print self::$a;
