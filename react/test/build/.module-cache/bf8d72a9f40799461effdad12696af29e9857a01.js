@@ -1,4 +1,6 @@
 
+alert(1)
+
 var CommentBox = React.createClass({displayName: 'CommentBox',
   render: function() {
     return (
@@ -8,9 +10,10 @@ var CommentBox = React.createClass({displayName: 'CommentBox',
     );
   }
 });
+
 React.render(
-  React.createElement(CommentBox, null),
-  document.getElementById('content')
+	React.createElement(CommentBox, null),
+	document.body
 );
 
 
