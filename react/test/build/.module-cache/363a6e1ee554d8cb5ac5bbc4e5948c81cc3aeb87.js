@@ -29,16 +29,7 @@ var TabSelector = React.createClass({displayName: "TabSelector",
   }
 });
 
-
-var data = [
-  {name: 'Red', value: 'red'},
-  {name: 'Blue', value: 'blue'},
-  {name: 'Yellow', value: 'yellow'},
-  {name: 'Green', value: 'green'},
-  {name: 'White', value: 'White'}
-];
-
-
+ 
 React.render(
 	TabSelector({
 		label: 'Color',
