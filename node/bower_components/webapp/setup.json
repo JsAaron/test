@@ -1,7 +1,0 @@
-{
-	"project":"foo",
-	"project_path":"bar",
-	"modules":["login", "backend", "frontend"],
-	"module_path":"modules",
-	"languages":["en", "es"]
-}
