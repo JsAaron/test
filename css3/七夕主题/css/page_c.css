@@ -84,3 +84,22 @@
     top: 50%;
     background-image: url("../images/water/water_3.png");
 }
+
+/*星星*/
+
+.stars{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.stars > li{
+    position: absolute;
+    width: 30px;
+    height: 31px;
+    background-image: url("../images/stars.png");
+}
+
+.strat >li:first-child {
+    top: 20%;
+}

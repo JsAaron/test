@@ -6,8 +6,8 @@
  */
 var Qixi = function() {
 
-        //走过的位置
-        var instanceX;
+    //走过的位置
+    var instanceX;
 
     //页面容器
     var container = $("#content");
@@ -16,7 +16,7 @@ var Qixi = function() {
     var visualHeight = container.height()
 
     //时间设置(时间毫秒）
-    var walkTime = 100; //正常走路
+    var walkTime = 200; //正常走路
     var inShopWalkTime = 100; //进商店时间
     var outShopWalkTime = 100; //出商店时间
     var simulateWaitTime = 0; //模拟等待时间
@@ -94,7 +94,7 @@ var Qixi = function() {
             //桥上走路
              return boy.walkTo(proportionX) 
         }).then(function() {
-            //停止走路
+            //停止走路  
             boy.stopWalk();
             //增加转身动作 
             girl.rotate();
