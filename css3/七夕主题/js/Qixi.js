@@ -12,11 +12,11 @@ var Qixi = function() {
     //页面容器
     var container = $("#content");
     //页面可视区域
-    var visualWidth  = container.width()
+    var visualWidth = container.width()
     var visualHeight = container.height()
 
     //时间设置(时间毫秒）
-    var walkTime = 200; //正常走路
+    var walkTime = 2000; //正常走路
     var inShopWalkTime = 100; //进商店时间
     var outShopWalkTime = 100; //出商店时间
     var simulateWaitTime = 0; //模拟等待时间
@@ -73,7 +73,7 @@ var Qixi = function() {
             ////////////
             //水波浪动画 //
             ////////////
-            new WaterEffect("water1", 0, 0, 5, 1.5, 1.5,100)
+            new WaterEffect("water1", 0, 0, 5, 1.5, 1.5, 100)
             new WaterEffect("water2", 0, 0, 7, 1.5, 1.2)
             new WaterEffect("water3", 0, 0, 8, 0.8, 1.5)
 
@@ -88,11 +88,11 @@ var Qixi = function() {
             return boy.walkTo(10)
         }).then(function() {
             //上桥
-            return boy.walkTo(4,2.7)
+            return boy.walkTo(4, 2.7)
         }).then(function() {
             var proportionX = visualWidth / (visualWidth / 2 - instanceX - $("#boy").width() + 20);
             //桥上走路
-             return boy.walkTo(proportionX) 
+            return boy.walkTo(proportionX)
         }).then(function() {
             //停止走路  
             boy.stopWalk();
@@ -159,7 +159,7 @@ var Qixi = function() {
             //开始走路
             var d1 = stratRun({
                 'left': dist + 'px',
-                'top' : disY ? disY : undefined
+                'top': disY ? disY : undefined
             }, walkTime);
             return d1;
         }
@@ -213,9 +213,9 @@ var Qixi = function() {
         return {
             //开始走路
             walkTo: function(proportionX, proportionY) {
-                var distX = calculateDist('x',proportionX)
-                var distY = calculateDist('y',proportionY)
-                return walkRun(distX,distY);
+                var distX = calculateDist('x', proportionX)
+                var distY = calculateDist('y', proportionY)
+                return walkRun(distX, distY);
             },
             //停止走路
             stopWalk: function() {
@@ -236,7 +236,7 @@ var Qixi = function() {
             //转身动作
             rotate: function() {
                 $boy.addClass('boy-rotate')
-                this.restoreWalk(); 
+                this.restoreWalk();
             },
             //获取人物走过的距离
             getDistance: function() {

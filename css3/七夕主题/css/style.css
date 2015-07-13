@@ -136,56 +136,12 @@ body {
     overflow: hidden;
     position: relative;
 }
-/*天空变化*/
-
-.stage {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    background: #ddf5f7;
-    z-index: 10;
-    animation: skyset 5s infinite linear;
-}
-
-@keyframes skyset {
-    0% {
-        background: #ddf5f7;
-    }
-    23% {
-        background: #ddf5f7;
-    }
-    25% {
-        background: #350847;
-    }
-    27% {
-        background: #0f192c;
-    }
-    50% {
-        background: #0f192c;
-    }
-    68% {
-        background: #0f192c;
-    }
-    75% {
-        background: #f9c7b8;
-    }
-    82% {
-        background: #ddf5f7;
-    }
-    100% {
-        background: #ddf5f7;
-    }
-}
 /*************男孩走路***************/
 
 .charector-wrap {
     position: absolute;
     left: -6%;
     top: 48%;
-    /*    width    : 6%;
-    height   : 20%;*/
-    
     width: 151px;
     height: 291px;
     -webkit-transform: 'translateX(0px)';
@@ -197,18 +153,22 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: step-start;
+    width: 151px;
+    height: 291px;
 }
 
 .slowWalk .charector {
     -webkit-animation-name: person-slow;
     -webkit-animation-duration: 950ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: step-start;
 }
 
 .slowFlolerWalk .charector {
     -webkit-animation-name: person-floler-slow;
     -webkit-animation-duration: 950ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: step-start;
 }
 /*人物暂停*/
 
@@ -219,24 +179,19 @@ body {
 
 @-webkit-keyframes person-slow {
     0% {
-        background: url(../images/boy/boy-walk1.png);
-        background-size: 100% 100%;
+        background: url(../images/boy/boy-walk.png) -453px -0px no-repeat
     }
     25% {
-        background: url(../images/boy/boy-walk2.png);
-        background-size: 100% 100%;
+        background: url(../images/boy/boy-walk.png) -0px -0px no-repeat
     }
     50% {
-        background: url(../images/boy/boy-walk3.png);
-        background-size: 100% 100%;
+        background: url(../images/boy/boy-walk.png) -151px -0px no-repeat;
     }
     75% {
-        background: url(../images/boy/boy-walk4.png);
-        background-size: 100% 100%;
+        background: url(../images/boy/boy-walk.png) -302px -0px no-repeat;
     }
     100% {
-        background: url(../images/boy/boy-walk1.png);
-        background-size: 100% 100%;
+        background: url(../images/boy/boy-walk.png) -453px -0px no-repeat;
     }
 }
 /*带花*/
@@ -245,10 +200,13 @@ body {
     0% {
         background: url(../images/boy/boy-flower.png) -0px -0px no-repeat;
     }
-    33.3% {
+    25% {
         background: url(../images/boy/boy-flower.png) -151px -0px no-repeat;
     }
-    66.6% {
+    50% {
+        background: url(../images/boy/boy-flower.png) -151px -0px no-repeat;
+    }
+    75% {
         background: url(../images/boy/boy-flower.png) -302px -0px no-repeat;
     }
     75% {
