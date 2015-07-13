@@ -243,31 +243,23 @@ body {
 
 @-webkit-keyframes person-floler-slow {
     0% {
-        background: url(../images/boy/boy-flower1.png);
-        background-size: 100% 100%;
+        background: url(../images/boy/boy-flower.png) -0px -0px no-repeat;
     }
-    25% {
-        background: url(../images/boy/boy-flower2.png);
-        background-size: 100% 100%;
+    33.3% {
+        background: url(../images/boy/boy-flower.png) -151px -0px no-repeat;
     }
-    50% {
-        background: url(../images/boy/boy-flower3.png);
-        background-size: 100% 100%;
+    66.6% {
+        background: url(../images/boy/boy-flower.png) -302px -0px no-repeat;
     }
     75% {
-        background: url(../images/boy/boy-flower4.png);
-        background-size: 100% 100%;
-    }
-    100% {
-        background: url(../images/boy/boy-flower1.png);
-        background-size: 100% 100%;
+        background: url(../images/boy/boy-flower.png) -0px -291px no-repeat;
     }
 }
 /*男孩转身*/
 
 .boy-rotate .charector {
     -webkit-animation-name: boy-rotate;
-    -webkit-animation-duration: 200ms;
+    -webkit-animation-duration: 2000ms;
     -webkit-animation-iteration-count: 1;
     -webkit-animation-timing-function: step-start;
     -webkit-animation-fill-mode: forwards;
@@ -275,21 +267,21 @@ body {
 
 @-webkit-keyframes boy-rotate {
     0% {
-       background: url(../images/boy/boy-around1.png);
+        background: url(../images/boy/boy-rotate.png) -0px -0px no-repeat;
     }
     20% {
-         background: url(../images/boy/boy-around2.png);
+        background: url(../images/boy/boy-rotate.png) -150px -0px no-repeat;
     }
     40% {
-       background: url(../images/boy/boy-around3.png);
+        background: url(../images/boy/boy-rotate.png) -300px -0px no-repeat;
     }
     60% {
-         background: url(../images/boy/boy-around4.png);
+        background: url(../images/boy/boy-rotate.png) -450px -0px no-repeat;
     }
     80% {
-        background: url(../images/boy/boy-around5.png);
+        background: url(../images/boy/boy-rotate.png) -0px -291px no-repeat;
     }
     100% {
-         background: url(../images/boy/boy-around6.png);
+        background: url(../images/boy/boy-rotate.png) -150px -291px no-repeat;
     }
 }
