@@ -1,0 +1,86 @@
+/*背景图*/
+
+.c_background {
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/QixiC.png");
+    background-size: 100% 100%;
+    position: absolute;
+}
+
+.girl {
+    background-image: url("../images/girl/girl.png");
+    position: absolute;
+    /*right: 42%;*/
+    top: 37%;
+    width: 151px;
+    height: 291px;
+    background-size: 100% 100%;
+}
+
+
+.girl-rotate{
+    -webkit-animation-name: girl-rotate;
+    -webkit-animation-duration:1000ms;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function:step-start;
+    -webkit-animation-fill-mode:forwards;
+}      
+
+@-webkit-keyframes girl-rotate{
+    0% {
+        background: url(../images/girl/girl3.png);
+    }
+    30% {
+        background: url(../images/girl/girl1.png);
+    }
+    60% {
+        background: url(../images/girl/girl2.png);
+    }
+    100% {
+        background: url(../images/girl/girl3.png);
+    }
+}
+
+
+.bridge-bottom{
+    position: absolute;
+    width: 41%;
+    height: 14.5%;
+    left: 29.5%;
+    top: 85%;
+    overflow: hidden;
+/*    -webkit-transform:perspective(8px) rotateX(.8deg); */
+}
+
+/*波浪水布局*/
+.water {
+    width: 100%;
+    height: 100%;
+}
+
+.water_1,
+.water_2,
+.water_3 {
+    width: 105%;
+    position: absolute;
+    height: 50%;
+    background-size: cover;
+}
+
+.water_1 {
+    top:20%;
+/*    left: 6%;
+    width: 85%;*/
+    background-image: url("../images/water/water_1.png");
+}
+
+.water_2 {
+    top: 40%;
+    background-image: url("../images/water/water_2.png");
+}
+
+.water_3 {
+    top: 50%;
+    background-image: url("../images/water/water_3.png");
+}
