@@ -99,10 +99,12 @@ html,
 body {
     width: 100%;
     height: 100%;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    perspective: 1000;
     -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
     -webkit-perspective: 1000;
-    /* background: #f3f3f3;*/
 }
 /*主体部分*/
 
@@ -119,13 +121,8 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    perspective: 1000;
-    -webkit-transform-style: preserve-3d;
-    -webkit-backface-visibility: hidden;
-    -webkit-perspective: 1000;
-    /*-webkit-transform: translateX(-2880px);*/
+    /*    -webkit-transform: translateX(-2880px);
+*/
 }
 
 .content-wrap > li {
@@ -156,6 +153,7 @@ body {
     width: 151px;
     height: 291px;
     /*预加载一张图，下次加载不闪*/
+    
     background: url(../images/person/boy-rotate.png) -0px -0px no-repeat;
 }
 
@@ -218,11 +216,11 @@ body {
 /*男孩转身*/
 
 .boy-rotate .charector {
-    -webkit-animation-name            : boy-rotate;
-    -webkit-animation-duration        : 850ms;
-    -webkit-animation-iteration-count : 1;
-    -webkit-animation-timing-function : step-start;
-    -webkit-animation-fill-mode       : forwards;
+    -webkit-animation-name: boy-rotate;
+    -webkit-animation-duration: 850ms;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: step-start;
+    -webkit-animation-fill-mode: forwards;
 }
 
 @-webkit-keyframes boy-rotate {
