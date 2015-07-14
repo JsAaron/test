@@ -32,6 +32,7 @@ var Qixi = function() {
         swipe.scrollTo(dist, walkTime)
     }
 
+
     ////////
     //小女孩 //
     ////////
@@ -52,7 +53,7 @@ var Qixi = function() {
     // 小孩走路 //
     //////////
     var boy = BoyWalk();
-// return
+    // return
     //开始走路
     boy.walkTo(3)
         .then(function() {
@@ -69,20 +70,18 @@ var Qixi = function() {
             var brid = Bird();
             brid.fly();
         }).then(function() {
-
             //自适应分辨率
             //修正小女孩的坐标,位于中间
             girl.setOffset();
-
             //页面继续滚动
             scrollTo(2 * visualWidth);
-
             //人物要往回走1/7处
             return boy.walkTo(10)
         }).then(function() {
             //上桥
             return boy.walkTo(4, 2.7)
         }).then(function() {
+            //算出应该走的距离比
             var proportionX = visualWidth / (visualWidth / 2 - instanceX - $("#boy").width() + 20);
             //桥上走路
             return boy.walkTo(proportionX)
@@ -91,13 +90,17 @@ var Qixi = function() {
             boy.stopWalk();
             //增加转身动作 
             girl.rotate();
-            boy.rotate();
+            boy.rotate(function(){
+                //如果转身完毕
+                //开始飘花
+                snowflake()
+            });
         });
 
 
     //监听页面移动变化
     swipe.watch('move', function(distance) {})
-        //监听页面移动完成
+    //监听页面移动完成
     swipe.watch('complete', function() {})
 
 
@@ -227,9 +230,15 @@ var Qixi = function() {
                 return walkOutShop.apply(null, arguments);
             },
             //转身动作
-            rotate: function() {
+            rotate: function(callback) {
                 $boy.addClass('boy-rotate')
                 this.restoreWalk();
+                //监听转身完毕
+                if(callback){
+                    $boy[0].addEventListener("webkitAnimationEnd", function() { //动画结束时事件 
+                       callback()
+                    }, false);
+                }
             },
             //获取人物走过的距离
             getDistance: function() {
@@ -347,6 +356,64 @@ var Qixi = function() {
             }
         }
     }
+
+
+    ///////
+    //飘雪花 //
+    ///////
+    function snowflake() {
+        //雪花容器
+        var $flakeContainer = $('#snowflake');
+        //随机六张图
+        function getImagesName() {
+            return 'snowflake' + [Math.floor(Math.random() * 6) + 1] 
+        };
+        //创建一个雪花元素
+        function createSnowBox() {
+            var url = 'images/snowflake/' + getImagesName() + '.png';
+            return $('<div class="snowbox" />').css({
+                'width'           : 41,
+                'height'          : 41,
+                'position'        : 'absolute',
+                'backgroundSize'  : 'cover',
+                'zIndex'          : 100,
+                'top'             : '-41px',
+                'backgroundImage' : 'url(' + url + ')'
+            }).addClass('snowRoll')
+        }
+        //开始飘花
+        setInterval(function() {
+            //运动的轨迹
+            var startPositionLeft = Math.random() * visualWidth - 100,
+                startOpacity = 1
+                endPositionTop  = visualHeight - 40,
+                endPositionLeft = startPositionLeft - 100 + Math.random() * 500,
+                duration        = visualHeight * 10 + Math.random() * 5000;
+
+            //随机透明度，不小于0.5
+            var randomStart = Math.random()
+            randomStart = randomStart < 0.5 ? startOpacity : randomStart
+
+            //创建一个雪花
+            var $flake = createSnowBox();
+            //设计起点位置
+            $flake.css({
+                left    : startPositionLeft,
+                opacity : randomStart
+            })
+            //加入到容器
+            $flakeContainer.append($flake)
+            //开始执行动画
+            $flake.transition({
+                top     : endPositionTop,
+                left    : endPositionLeft,
+                opacity : 0.5
+            }, duration, 'ease-out', function() {
+                $(this).remove() //结束后删除
+            })
+        }, 200);
+    }
+
 };
 
 
