@@ -9,36 +9,44 @@
 }
 
 .girl {
-    background-image: url("../images/girl/girl.png");
+    background: url(../images/person/girl.png) -302px -0px no-repeat;
     position: absolute;
-    /*right: 42%;*/
+    right: 40%;
     top: 37%;
     width: 151px;
     height: 291px;
-    background-size: 100% 100%;
 }
 
 
 .girl-rotate{
     -webkit-animation-name: girl-rotate;
-    -webkit-animation-duration:1000ms;
+    -webkit-animation-duration: 200ms;
     -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function:step-start;
-    -webkit-animation-fill-mode:forwards;
+    -webkit-animation-timing-function: step-start;
+    -webkit-animation-fill-mode: forwards;
 }      
 
 @-webkit-keyframes girl-rotate{
     0% {
-        background: url(../images/girl/girl3.png);
+        background: url(../images/person/girl.png) -755px -0px no-repeat;
     }
-    30% {
-        background: url(../images/girl/girl1.png);
+    16.7% {
+        background: url(../images/person/girl.png) -151px -0px no-repeat;
     }
-    60% {
-        background: url(../images/girl/girl2.png);
+    33.4% {
+        background: url(../images/person/girl.png) -906px -0px no-repeat;
+    }
+    50.1% {
+        background: url(../images/person/girl.png) -0px -0px no-repeat;
+    }
+    66.8% {
+        background: url(../images/person/girl.png) -453px -0px no-repeat;
+    }
+    83.5% {
+        background: url(../images/person/girl.png) -604px -0px no-repeat;
     }
     100% {
-        background: url(../images/girl/girl3.png);
+        background: url(../images/person/girl.png) -755px -0px no-repeat;
     }
 }
 

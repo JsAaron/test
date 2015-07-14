@@ -48,46 +48,37 @@
     background: url(../images/door-right.png);
     background-size: 100% 100%;
 }
-
 /*鸟*/
 
 .bird {
     min-width: 91px;
     min-height: 71px;
-    top:10%;
-/*    width: 5%;
-    height: 5%;*/
-    position:absolute;
+    top: 10%;
+    position: absolute;
     z-index: 10;
     right: -91px;
-    background: url(../images/bird1.png);
-
+    background: url(../images/bird.png) -182px 0px no-repeat;
 }
 
-.birdFly{
-    -webkit-animation-name:bird-slow;
-    -webkit-animation-duration:400ms;
-    -webkit-animation-timing-function:step-start;
-    -webkit-animation-iteration-count:infinite;
+.birdFly {
+    -webkit-animation-name: bird-slow;
+    -webkit-animation-duration: 400ms;
+    -webkit-animation-timing-function: step-start;
+    -webkit-animation-iteration-count: infinite;
 }
-
-
 /*鸟慢飞*/
+
 @-webkit-keyframes bird-slow {
     0% {
-        background: url(../images/bird1.png) ;
-        background-size: 100% 100%;
+        background: url(../images/bird.png) -182px 0px no-repeat;
     }
     50% {
-        background: url(../images/bird2.png);
-        background-size: 100% 100%;
+        background: url(../images/bird.png) 0px 0px no-repeat;
     }
     75% {
-        background: url(../images/bird3.png);
-        background-size: 100% 100%;
+        background: url(../images/bird.png) -91px 0px no-repeat;
     }
     100% {
-        background: url(../images/bird1.png);
-        background-size: 100% 100%;
+        background: url(../images/bird.png) -182px 0px no-repeat;
     }
 }

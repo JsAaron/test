@@ -155,6 +155,8 @@ body {
     height: 100%;
     width: 151px;
     height: 291px;
+    /*预加载一张图，下次加载不闪*/
+    background: url(../images/person/boy-rotate.png) -0px -0px no-repeat;
 }
 
 .slowWalk .charector {
@@ -179,67 +181,70 @@ body {
 
 @-webkit-keyframes person-slow {
     0% {
-        background: url(../images/boy/boy-walk.png) -453px -0px no-repeat
+        background: url(../images/person/boy-walk.png) -453px -0px no-repeat
     }
     25% {
-        background: url(../images/boy/boy-walk.png) -0px -0px no-repeat
+        background: url(../images/person/boy-walk.png) -0px -0px no-repeat
     }
     50% {
-        background: url(../images/boy/boy-walk.png) -151px -0px no-repeat;
+        background: url(../images/person/boy-walk.png) -151px -0px no-repeat;
     }
     75% {
-        background: url(../images/boy/boy-walk.png) -302px -0px no-repeat;
+        background: url(../images/person/boy-walk.png) -302px -0px no-repeat;
     }
     100% {
-        background: url(../images/boy/boy-walk.png) -453px -0px no-repeat;
+        background: url(../images/person/boy-walk.png) -453px -0px no-repeat;
     }
 }
 /*带花*/
 
 @-webkit-keyframes person-floler-slow {
     0% {
-        background: url(../images/boy/boy-flower.png) -0px -0px no-repeat;
+        background: url(../images/person/boy-flower.png) -453px -0px no-repeat
     }
     25% {
-        background: url(../images/boy/boy-flower.png) -151px -0px no-repeat;
+        background: url(../images/person/boy-flower.png) -0px -0px no-repeat
     }
     50% {
-        background: url(../images/boy/boy-flower.png) -151px -0px no-repeat;
+        background: url(../images/person/boy-flower.png) -151px -0px no-repeat;
     }
     75% {
-        background: url(../images/boy/boy-flower.png) -302px -0px no-repeat;
+        background: url(../images/person/boy-flower.png) -302px -0px no-repeat;
     }
-    75% {
-        background: url(../images/boy/boy-flower.png) -0px -291px no-repeat;
+    100% {
+        background: url(../images/person/boy-flower.png) -453px -0px no-repeat;
     }
 }
 /*男孩转身*/
 
 .boy-rotate .charector {
-    -webkit-animation-name: boy-rotate;
-    -webkit-animation-duration: 2000ms;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: step-start;
-    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-name            : boy-rotate;
+    -webkit-animation-duration        : 200ms;
+    -webkit-animation-iteration-count : 1;
+    -webkit-animation-timing-function : step-start;
+    -webkit-animation-fill-mode       : forwards;
 }
 
 @-webkit-keyframes boy-rotate {
     0% {
-        background: url(../images/boy/boy-rotate.png) -0px -0px no-repeat;
+        background: url(../images/person/boy-rotate.png) -750px -0px no-repeat;
     }
-    20% {
-        background: url(../images/boy/boy-rotate.png) -150px -0px no-repeat;
+    16.7% {
+        background: url(../images/person/boy-rotate.png) -0px -0px no-repeat;
     }
-    40% {
-        background: url(../images/boy/boy-rotate.png) -300px -0px no-repeat;
+    33.4% {
+        background: url(../images/person/boy-rotate.png) -300px -0px no-repeat;
     }
-    60% {
-        background: url(../images/boy/boy-rotate.png) -450px -0px no-repeat;
+    50.1% {
+        background: url(../images/person/boy-rotate.png) -150px -0px no-repeat;
     }
-    80% {
-        background: url(../images/boy/boy-rotate.png) -0px -291px no-repeat;
+    66.8% {
+        background: url(../images/person/boy-rotate.png) -450px -0px no-repeat;
+    }
+    83.5% {
+        background: url(../images/person/boy-rotate.png) -600px -0px no-repeat;
     }
     100% {
-        background: url(../images/boy/boy-rotate.png) -150px -291px no-repeat;
+        background: url(../images/person/boy-rotate.png) -750px -0px no-repeat;
     }
 }
