@@ -8,6 +8,7 @@
     position: absolute;
 }
 
+/*小女孩*/
 .girl {
     background: url(../images/person/girl.png) -302px -0px no-repeat;
     position: absolute;
@@ -50,13 +51,14 @@
     }
 }
 
+/*桥*/
 
 .bridge-bottom{
     position: absolute;
     width: 41%;
-    height: 14.5%;
+    height: 24%;
     left: 29.5%;
-    top: 85%;
+    top: 76%;
     overflow: hidden;
 /*    -webkit-transform:perspective(8px) rotateX(.8deg); */
 }
@@ -69,29 +71,78 @@
 
 .water_1,
 .water_2,
-.water_3 {
-    width: 105%;
+.water_3,
+.water_4 {
+    width: 100%;
     position: absolute;
     height: 50%;
-    background-size: cover;
 }
 
+
 .water_1 {
-    top:20%;
-/*    left: 6%;
-    width: 85%;*/
-    background-image: url("../images/water/water_1.png");
+    width: 131px;
+    height: 15px;
+    top:13%;
+    left:35%;
+    background: url(../images/water.png) -261px -0px no-repeat;
+    -webkit-animation-name: shake;
+    -webkit-animation-duration: 2.5s;
+    -webkit-animation-iteration-count: infinite;
 }
 
 .water_2 {
-    top: 40%;
-    background-image: url("../images/water/water_2.png");
+    width: 161px;
+    height: 9px;
+    top:25%;
+    left:45%;
+    background: url(../images/water.png) -693px -0px no-repeat;
+    -webkit-animation-name: shake;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
 }
 
+
 .water_3 {
-    top: 50%;
-    background-image: url("../images/water/water_3.png");
+    width: 261px;
+    height: 29px;
+    top:50%;
+    left:15%;
+    background: url(../images/water.png) -0px -0px no-repeat;
+    -webkit-animation-name: shake;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-iteration-count: infinite;
 }
+
+
+.water_4 {
+    width: 301px;
+    height: 12px;
+    top:70%;
+    left:30%;
+    background: url(../images/water.png) -392px -0px no-repeat;
+    -webkit-animation-name: shake;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes shake {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, -0.5px, 0);
+    transform: translate3d(-10px, -0.5px, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0.5px, 0);
+    transform: translate3d(10px, 0.5px, 0);
+  }
+}
+
+
 
 /*星星*/
 
@@ -108,6 +159,85 @@
     background-image: url("../images/stars.png");
 }
 
-.strat >li:first-child {
-    top: 20%;
+.stars1{
+    top  :20%;
+    left :30%;
+    -webkit-animation-name:flash;
+    -webkit-animation-duration:0.7s;
+    -webkit-animation-timing-function:ease-in-out;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+} 
+
+.stars2{
+    top  :15%;
+    left :20%;
+    -webkit-animation-name:flash;
+    -webkit-animation-duration:1s;
+    -webkit-animation-timing-function:ease-in-out;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+} 
+
+.stars3{
+    top  :25%;
+    left :85%;
+    -webkit-animation-name:flash;
+    -webkit-animation-duration:0.5s;
+    -webkit-animation-timing-function:ease-in-out;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+} 
+
+
+.stars4{
+    top  :30%;
+    left :70%;
+    -webkit-animation-name:flash;
+    -webkit-animation-duration:2s;
+    -webkit-animation-timing-function:ease-in-out;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+} 
+
+
+.stars5{
+    top  :25%;
+    left :20%;
+    -webkit-animation-name:flash;
+    -webkit-animation-duration:1.5s;
+    -webkit-animation-timing-function:ease-in-out;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+} 
+
+
+.stars6{
+    top  :10%;
+    left :65%;
+    -webkit-animation-name:flash;
+    -webkit-animation-duration:1.2s;
+    -webkit-animation-timing-function:ease-in-out;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+} 
+
+
+@-webkit-keyframes flash {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: 0;
+  }
 }
+
+@-webkit-keyframes flash1{    /*透明度由0到1*/  
+   0%{  
+      opacity:0; /*透明度为0*/  
+    }  
+   100%{  
+      opacity:1; /*透明度为1*/  
+   }  
+ }  

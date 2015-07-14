@@ -52,7 +52,7 @@ var Qixi = function() {
     // 小孩走路 //
     //////////
     var boy = BoyWalk();
-
+// return
     //开始走路
     boy.walkTo(3)
         .then(function() {
@@ -69,13 +69,6 @@ var Qixi = function() {
             var brid = Bird();
             brid.fly();
         }).then(function() {
-
-            ////////////
-            //水波浪动画 //
-            ////////////
-            new WaterEffect("water1", 0, 0, 5, 1.5, 1.5, 100)
-            new WaterEffect("water2", 0, 0, 7, 1.5, 1.2)
-            new WaterEffect("water3", 0, 0, 8, 0.8, 1.5)
 
             //自适应分辨率
             //修正小女孩的坐标,位于中间
@@ -175,7 +168,7 @@ var Qixi = function() {
 
             //开始走路
             var walkPlay = stratRun({
-                transform: 'rotateX(20deg) translateZ(' + instanceZ + 'px) translateX(' + instanceX + 'px) scale(0.8)',
+                transform: 'rotateX(20deg) translateZ(' + instanceZ + 'px) translateX(' + instanceX + 'px) scale3d(.3, .3, .3)',
                 opacity: 0.3
             }, runTime);
             //走路完毕
