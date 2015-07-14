@@ -16,12 +16,12 @@ var Qixi = function() {
     var visualHeight = container.height()
 
     //时间设置(时间毫秒）
-    var walkTime = 2000; //正常走路
-    var inShopWalkTime = 100; //进商店时间
-    var outShopWalkTime = 100; //出商店时间
-    var simulateWaitTime = 0; //模拟等待时间
-    var openDoorTime = 100; //开门时间
-    var shutDoorTime = 100 //关门时间
+    var walkTime = 3000; //正常走路
+    var inShopWalkTime = 1500; //进商店时间
+    var outShopWalkTime = 1500; //出商店时间
+    var simulateWaitTime = 1000; //模拟等待时间
+    var openDoorTime = 1000; //开门时间
+    var shutDoorTime = 1000 //关门时间
 
     ///////////
     //场景页面滑动对象 //
@@ -55,7 +55,7 @@ var Qixi = function() {
     var boy = BoyWalk();
     // return
     //开始走路
-    boy.walkTo(3)
+    boy.walkTo(1.8)
         .then(function() {
             //开始滚动页面
             scrollTo(visualWidth)
@@ -63,12 +63,12 @@ var Qixi = function() {
             //第二次走路
             return boy.walkTo(2)
         }).then(function() {
-            //去商店
-            return toShop(boy);
-        }).then(function() {
             //右边飞鸟
             var brid = Bird();
             brid.fly();
+        }).then(function() {
+            //去商店
+            return toShop(boy);
         }).then(function() {
             //自适应分辨率
             //修正小女孩的坐标,位于中间
@@ -88,19 +88,23 @@ var Qixi = function() {
         }).then(function() {
             //停止走路  
             boy.stopWalk();
-            //增加转身动作 
-            girl.rotate();
-            boy.rotate(function(){
-                //如果转身完毕
-                //开始飘花
-                snowflake()
-            });
+
+            setTimeout(function() {
+                //增加转身动作 
+                girl.rotate();
+                boy.rotate(function() {
+                    //如果转身完毕
+                    //开始飘花
+                    snowflake()
+                });
+            }, 1000)
+
         });
 
 
     //监听页面移动变化
     swipe.watch('move', function(distance) {})
-    //监听页面移动完成
+        //监听页面移动完成
     swipe.watch('complete', function() {})
 
 
@@ -234,9 +238,9 @@ var Qixi = function() {
                 $boy.addClass('boy-rotate')
                 this.restoreWalk();
                 //监听转身完毕
-                if(callback){
+                if (callback) {
                     $boy[0].addEventListener("webkitAnimationEnd", function() { //动画结束时事件 
-                       callback()
+                        callback()
                     }, false);
                 }
             },
@@ -345,7 +349,7 @@ var Qixi = function() {
             $brid.addClass('birdFly')
             $brid.transition({
                 right: visualWidth
-            }, 20000, 'linear');
+            }, 10000, 'linear');
         }
         return {
             fly: function() {
@@ -366,29 +370,29 @@ var Qixi = function() {
         var $flakeContainer = $('#snowflake');
         //随机六张图
         function getImagesName() {
-            return 'snowflake' + [Math.floor(Math.random() * 6) + 1] 
+            return 'snowflake' + [Math.floor(Math.random() * 6) + 1]
         };
         //创建一个雪花元素
         function createSnowBox() {
-            var url = 'images/snowflake/' + getImagesName() + '.png';
-            return $('<div class="snowbox" />').css({
-                'width'           : 41,
-                'height'          : 41,
-                'position'        : 'absolute',
-                'backgroundSize'  : 'cover',
-                'zIndex'          : 100,
-                'top'             : '-41px',
-                'backgroundImage' : 'url(' + url + ')'
-            }).addClass('snowRoll')
-        }
-        //开始飘花
+                var url = 'images/snowflake/' + getImagesName() + '.png';
+                return $('<div class="snowbox" />').css({
+                    'width': 41,
+                    'height': 41,
+                    'position': 'absolute',
+                    'backgroundSize': 'cover',
+                    'zIndex': 100,
+                    'top': '-41px',
+                    'backgroundImage': 'url(' + url + ')'
+                }).addClass('snowRoll')
+            }
+            //开始飘花
         setInterval(function() {
             //运动的轨迹
             var startPositionLeft = Math.random() * visualWidth - 100,
                 startOpacity = 1
-                endPositionTop  = visualHeight - 40,
+            endPositionTop = visualHeight - 40,
                 endPositionLeft = startPositionLeft - 100 + Math.random() * 500,
-                duration        = visualHeight * 10 + Math.random() * 5000;
+                duration = visualHeight * 10 + Math.random() * 5000;
 
             //随机透明度，不小于0.5
             var randomStart = Math.random()
@@ -398,16 +402,16 @@ var Qixi = function() {
             var $flake = createSnowBox();
             //设计起点位置
             $flake.css({
-                left    : startPositionLeft,
-                opacity : randomStart
-            })
-            //加入到容器
+                    left: startPositionLeft,
+                    opacity: randomStart
+                })
+                //加入到容器
             $flakeContainer.append($flake)
-            //开始执行动画
+                //开始执行动画
             $flake.transition({
-                top     : endPositionTop,
-                left    : endPositionLeft,
-                opacity : 0.5
+                top: endPositionTop,
+                left: endPositionLeft,
+                opacity: 0.7
             }, duration, 'ease-out', function() {
                 $(this).remove() //结束后删除
             })

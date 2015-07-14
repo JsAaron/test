@@ -46,7 +46,7 @@
 
 .girl-rotate {
     -webkit-animation-name: girl-rotate;
-    -webkit-animation-duration: 200ms;
+    -webkit-animation-duration: 850ms;
     -webkit-animation-iteration-count: 1;
     -webkit-animation-timing-function: step-start;
     -webkit-animation-fill-mode: forwards;
@@ -182,7 +182,7 @@
     top: 20%;
     left: 30%;
     -webkit-animation-name: flash;
-    -webkit-animation-duration: 0.7s;
+    -webkit-animation-duration: 5s;
     -webkit-animation-timing-function: ease-in-out;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-direction: alternate;
@@ -192,7 +192,7 @@
     top: 15%;
     left: 20%;
     -webkit-animation-name: flash;
-    -webkit-animation-duration: 1s;
+    -webkit-animation-duration: 20s;
     -webkit-animation-timing-function: ease-in-out;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-direction: alternate;
@@ -202,7 +202,7 @@
     top: 25%;
     left: 85%;
     -webkit-animation-name: flash;
-    -webkit-animation-duration: 0.5s;
+    -webkit-animation-duration: 15s;
     -webkit-animation-timing-function: ease-in-out;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-direction: alternate;
@@ -212,7 +212,7 @@
     top: 30%;
     left: 70%;
     -webkit-animation-name: flash;
-    -webkit-animation-duration: 2s;
+    -webkit-animation-duration: 25s;
     -webkit-animation-timing-function: ease-in-out;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-direction: alternate;
@@ -222,7 +222,7 @@
     top: 25%;
     left: 20%;
     -webkit-animation-name: flash;
-    -webkit-animation-duration: 1.5s;
+    -webkit-animation-duration: 30s;
     -webkit-animation-timing-function: ease-in-out;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-direction: alternate;
@@ -232,7 +232,7 @@
     top: 10%;
     left: 65%;
     -webkit-animation-name: flash;
-    -webkit-animation-duration: 1.2s;
+    -webkit-animation-duration: 10s;
     -webkit-animation-timing-function: ease-in-out;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-direction: alternate;

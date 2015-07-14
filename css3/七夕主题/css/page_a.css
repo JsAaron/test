@@ -64,6 +64,7 @@
     top: -30px;
     height: 201px;
     width: 201px;
+	right:900px;
     -webkit-transform: rotate(45deg);
     -webkit-animation-name: rotation;
     -webkit-animation-duration: 30s;
@@ -73,10 +74,10 @@
 
 @-webkit-keyframes rotation {
     0% {
-        transform: translateX(0) rotate(45deg);
+        transform: translateX(0) translateY(0) rotate(45deg);
     }
     100% {
-        transform: translateX(1000px) rotate(70deg);
+        transform: translateX(-2000px) translateY(400px) rotate(70deg);
     }
 }
 

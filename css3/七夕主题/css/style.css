@@ -219,7 +219,7 @@ body {
 
 .boy-rotate .charector {
     -webkit-animation-name            : boy-rotate;
-    -webkit-animation-duration        : 200ms;
+    -webkit-animation-duration        : 850ms;
     -webkit-animation-iteration-count : 1;
     -webkit-animation-timing-function : step-start;
     -webkit-animation-fill-mode       : forwards;
