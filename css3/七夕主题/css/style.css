@@ -146,7 +146,7 @@ body {
     -webkit-transform: 'translateX(0px)';
     -webkit-backface-visibility: hidden;
     -webkit-perspective: 1000;
-    background: url(../images/person/boy-walk.png) -453px -0px no-repeat;
+    background: url(../images/boy.png) -0px -291px no-repeat;
 }
 
 .slowWalk {
@@ -161,7 +161,6 @@ body {
 }
 
 .slowFlolerWalk {
-    background: url(../images/person/boy-flower.png) -0px -0px no-repeat;
     -webkit-animation-name: person-floler-slow;
     -webkit-animation-duration: 950ms;
     -webkit-animation-iteration-count: infinite;
@@ -179,43 +178,43 @@ body {
 /*人物暂停*/
 
 .boyOriginal {
-    background: url(../images/person/boy-flower.png) -0px -0px no-repeat;
+    background: url(../images/boy-flower.png) -0px -0px no-repeat;
 }
 /*普通慢走*/
 
 @-webkit-keyframes person-slow {
     0% {
-        background-position: -453px -0px;
+        background-position: -0px -291px;
     }
     25% {
-        background-position: -0px -0px;
+        background-position: -602px -0px;
     }
     50% {
-        background-position: -151px -0px;
+        background-position: -302px -291px;
     }
     75% {
-        background-position: -302px -0px;
+        background-position: -151px -291px;
     }
     100% {
-        background-position: -453px -0px;
+        background-position: -0px -291px;
     }
 }
 
 @-moz-keyframes person-slow {
     0% {
-        background-position: -453px -0px;
+        background-position: -0px -291px;
     }
     25% {
-        background-position: -0px -0px;
+        background-position: -602px -0px;
     }
     50% {
-        background-position: -151px -0px;
+        background-position: -302px -291px;
     }
     75% {
-        background-position: -302px -0px;
+        background-position: -151px -291px;
     }
     100% {
-        background-position: -453px -0px;
+        background-position: -0px -291px;
     }
 }
 /*带花*/
@@ -225,16 +224,16 @@ body {
         background-position: -453px -0px;
     }
     25% {
-        background-position: -0px -0px;
+        background-position: -904px -0px;
     }
     50% {
-        background-position: -151px -0px;
+        background-position: -451px -0px;
     }
     75% {
-        background-position: -302px -0px;
+        background-position: -753px -0px;
     }
     100% {
-        background-position: -453px -0px;
+        background-position: -300px -0px;
     }
 }
 
@@ -243,34 +242,32 @@ body {
         background-position: -453px -0px;
     }
     25% {
-        background-position: -0px -0px;
+        background-position: -904px -0px;
     }
     50% {
-        background-position: -151px -0px;
+        background-position: -451px -0px;
     }
     75% {
-        background-position: -302px -0px;
+        background-position: -753px -0px;
     }
     100% {
-        background-position: -453px -0px;
+        background-position: -300px -0px;
     }
 }
 /*男孩转身*/
 
 .boy-rotate {
-    background: url(../images/person/boy-rotate.png) -0px -0px no-repeat;
+    background: url(../images/boy-rotate.png) -0px -0px no-repeat;
     -webkit-animation-name: boy-rotate;
     -webkit-animation-duration: 850ms;
     -webkit-animation-iteration-count: 1;
     -webkit-animation-timing-function: step-start;
     -webkit-animation-fill-mode: forwards;
-
     -moz-animation-name: boy-rotate;
     -moz-animation-duration: 850ms;
     -moz-animation-iteration-count: 1;
     -moz-animation-timing-function: step-start;
     -moz-animation-fill-mode: forwards;
-
 }
 
 @-webkit-keyframes boy-rotate {
@@ -296,7 +293,6 @@ body {
         background-position: -750px -0px;
     }
 }
-
 
 @-moz-keyframes boy-rotate {
     0% {
