@@ -153,7 +153,6 @@ body {
     width: 151px;
     height: 291px;
     /*预加载一张图，下次加载不闪*/
-    
     background: url(../images/person/boy-rotate.png) -0px -0px no-repeat;
 }
 
@@ -175,6 +174,14 @@ body {
 .pauseWalk .charector {
     -webkit-animation-play-state: paused;
 }
+
+/*人物暂停*/
+
+.boyOriginal .charector{
+   background: url(../images/person/boy-flower.png) -0px -0px no-repeat;
+}
+
+
 /*普通慢走*/
 
 @-webkit-keyframes person-slow {

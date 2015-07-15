@@ -16,23 +16,30 @@ var Qixi = function() {
 
     //时间设置(时间毫秒）
     var setTime = {
-        walkToThird  : 500, //走第一段路，1/3屏幕宽度所用的时间，走完毕背景动
-        walkToMiddle : 500, //走第二段路，1/2屏幕宽度所用的时间，走到商店
+        walkToThird  : 4000, //走第一段路，1/3屏幕宽度所用的时间，走完毕背景动
+        walkToMiddle : 5500, //走第二段路，1/2屏幕宽度所用的时间，走到商店
         walkToEnd    : 5000, //走第三段路，走到桥
         
-        walkTobridge : 500, //上桥
-        bridgeWalk   : 500, //桥上走路到中间
+        walkTobridge : 2000, //上桥
+        bridgeWalk   : 2000, //桥上走路到中间
 
-        walkToShop   : 500, //进商店时间
-        walkOutShop  : 500, //出商店时间
+        walkToShop   : 1000, //进商店时间
+        walkOutShop  : 1000, //出商店时间
         
-        openDoorTime : 100, //开门时间
-        shutDoorTime : 100, //关门时间
+        openDoorTime : 500, //开门时间
+        shutDoorTime : 500, //关门时间
         
-        waitRotate   : 100,//男女等待转身的时间
-        waitFlower   : 0 //模拟取花的等待时间
+        waitRotate   : 850,//男女等待转身的时间
+        waitFlower   : 500 //模拟取花的等待时间
     }
 
+    //如果启动了dubug状态
+    var debug = 0
+    if (debug) {
+        $.each(setTime, function(key, val) {
+            setTime[key] = 500
+        })
+    }
 
     ///////////
     //场景页面滑动对象 //
@@ -57,6 +64,12 @@ var Qixi = function() {
             this.elem.css({
                 left: visualWidth / 2
             })
+        },
+        getOffset: function() {
+            return this.elem.offset();
+        },
+        getWidth: function() {
+            return this.elem.width()
         }
     }
 
@@ -66,13 +79,17 @@ var Qixi = function() {
     var boy = BoyWalk();
     // return
     //开始走路
-    boy.walkTo(setTime.walkToThird, 0.3)
+    boy.walkTo(setTime.walkToThird, 0.6)
         .then(function() {
             //开始滚动页面
             scrollTo(setTime.walkToMiddle, 1)
                 //第二次走路
             return boy.walkTo(setTime.walkToMiddle, 0.5)
-        }).then(function() {
+        }).then(function(){
+			 //飞鸟
+            var bird = Bird();
+            bird.fly();
+		}).then(function() {
             //暂停走路
             boy.stopWalk();
             //去商店
@@ -81,9 +98,6 @@ var Qixi = function() {
             //自适应分辨率
             //修正小女孩的坐标,位于中间
             girl.setOffset();
-            //飞鸟
-            var bird = Bird();
-            bird.fly();
             //页面继续滚动,到结束
             scrollTo(setTime.walkToEnd, 2);
             //人物要往回走1/10处
@@ -92,11 +106,13 @@ var Qixi = function() {
             //上桥   
             return boy.walkTo(setTime.walkTobridge, 0.25, 0.37)
         }).then(function() {
+            //实际走路的比例
+            var proportionX = (girl.getOffset().left - boy.getWidth() - instanceX + girl.getWidth() / 5) / visualWidth;
             //桥上走路
-            return boy.walkTo(setTime.bridgeWalk, 0.38)
+            return boy.walkTo(setTime.bridgeWalk, proportionX)
         }).then(function() {
-            //停止走路  
-            boy.stopWalk();
+            //复位初始状态 
+            boy.resetOriginal();
             //增加转身动作 
             setTimeout(function() {
                 girl.rotate();
@@ -238,6 +254,12 @@ var Qixi = function() {
             stopWalk: function() {
                 pauseWalk();
             },
+            //复位初始状态
+            resetOriginal:function(){
+                this.stopWalk();
+                //恢复图片
+                $boy.removeClass('slowWalk slowFlolerWalk')
+            },
             //恢复走路
             restoreWalk: function() {
                 restoreWalk();
@@ -260,6 +282,10 @@ var Qixi = function() {
                         callback()
                     }, false);
                 }
+            },
+            //获取男孩的宽度
+            getWidth:function(){
+                return  $boy.width();
             },
             //获取人物走过的距离
             getDistance: function() {
@@ -361,7 +387,7 @@ var Qixi = function() {
             $brid.addClass('birdFly')
             $brid.transition({
                 right: visualWidth
-            }, 10000, 'linear');
+            }, 15000, 'linear');
         }
         return {
             fly: function() {
@@ -392,7 +418,7 @@ var Qixi = function() {
                     'height': 41,
                     'position': 'absolute',
                     'backgroundSize': 'cover',
-                    'zIndex': 100,
+                    'zIndex': 100000,
                     'top': '-41px',
                     'backgroundImage': 'url(' + url + ')'
                 }).addClass('snowRoll')
