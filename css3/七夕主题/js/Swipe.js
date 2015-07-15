@@ -41,7 +41,7 @@ function Swipe(container, options) {
     //动画结束后通知事件
     container[0].addEventListener('transitionend', function() {
         isComplete = true;
-        callbacks.complete();
+        // callbacks.complete();
     }, false)
 
     //循环获取坐标
@@ -70,7 +70,7 @@ function Swipe(container, options) {
             'transform'                  : 'translate3d(-' + x + 'px,0px,0px)'
         })
         //获取当前坐标
-        monitorOffet(element);
+        // monitorOffet(element);
         return this;
     }
 

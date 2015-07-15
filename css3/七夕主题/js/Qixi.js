@@ -41,7 +41,7 @@ var Qixi = function() {
     audio.play();
 
     //如果启动了dubug状态
-    var debug = 0
+    var debug = 50
     if (debug) {
         $.each(setTime, function(key, val) {
             setTime[key] = 500
@@ -112,7 +112,7 @@ var Qixi = function() {
     //////////
     var boy = BoyWalk();
 
-    // return
+
     //开始走路
     boy.walkTo(setTime.walkToThird, 0.6)
         .then(function() {
@@ -159,17 +159,6 @@ var Qixi = function() {
                 });
             }, setTime.waitRotate)
         });
-
-
-    //监听页面移动变化
-    swipe.watch('move', function(distance) {
-        console.log(distance)
-    })
-
-
-    //监听页面移动完成
-    swipe.watch('complete', function() {})
-
 
 
     /**
@@ -393,6 +382,19 @@ var Qixi = function() {
             return defer
         }
 
+        ///////////
+        //灯动画 //
+        ///////////
+        var lamp = {
+            elem: $('.b_background'),
+            bright: function() {
+                this.elem.addClass('lamp-bright')
+            },
+            dark: function() {
+                this.elem.removeClass('lamp-bright')
+            }
+        }
+
         //开门动作
         var waitOpen = openDoor(setTime.openDoorTime)
 
@@ -400,6 +402,7 @@ var Qixi = function() {
         //开始执行一系列动作
         waitOpen
             .then(function() {
+                lamp.bright();
                 //小孩进入商店
                 return boyObj.toShop($door, setTime.walkToShop)
             }).then(function() {
@@ -411,6 +414,7 @@ var Qixi = function() {
             }).then(function() {
                 //商店关门
                 shutDoor(setTime.shutDoorTime);
+                lamp.dark();
                 //开始下一套动作
                 defer.resolve();
             })
