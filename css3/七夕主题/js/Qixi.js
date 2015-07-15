@@ -41,7 +41,7 @@ var Qixi = function() {
     audio.play();
 
     //如果启动了dubug状态
-    var debug = 50
+    var debug = 0
     if (debug) {
         $.each(setTime, function(key, val) {
             setTime[key] = 500
@@ -111,7 +111,6 @@ var Qixi = function() {
     // 小孩走路 //
     //////////
     var boy = BoyWalk();
-
 
     //开始走路
     boy.walkTo(setTime.walkToThird, 0.6)
@@ -288,7 +287,7 @@ var Qixi = function() {
             resetOriginal:function(){
                 this.stopWalk();
                 //恢复图片
-                $boy.removeClass('slowWalk slowFlolerWalk')
+                $boy.removeClass('slowWalk slowFlolerWalk').addClass('boyOriginal')
             },
             //恢复走路
             restoreWalk: function() {
@@ -311,6 +310,11 @@ var Qixi = function() {
                     $boy[0].addEventListener("webkitAnimationEnd", function() { //动画结束时事件 
                         callback()
                     }, false);
+                    if(navigator.userAgent.indexOf('Firefox') >= 0){
+                        setTimeout(function(){
+                            callback()
+                        },0)
+                    }
                 }
             },
             //获取男孩的宽度
