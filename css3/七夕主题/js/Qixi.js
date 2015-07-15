@@ -74,6 +74,19 @@ var Qixi = function() {
         }
     }
 
+    /////////
+    //右边飞鸟 //
+    /////////
+    var bird = {
+        elem:$(".bird"),
+        fly:function(){
+            this.elem.addClass('birdFly')
+            this.elem.transition({
+                right: visualWidth
+            }, 15000, 'linear');            
+        }
+    }
+
     ///////////
     //loge动画 //
     ///////////
@@ -101,7 +114,6 @@ var Qixi = function() {
             return boy.walkTo(setTime.walkToMiddle, 0.5)
         }).then(function(){
 			 //飞鸟
-            var bird = Bird();
             bird.fly();
 		}).then(function() {
             //暂停走路
@@ -393,27 +405,6 @@ var Qixi = function() {
         return defer;
     }
 
-    /**
-     * 左边飞鸟
-     */
-    var Bird = function() {
-        var $brid = $(".bird");
-
-        function run() {
-            $brid.addClass('birdFly')
-            $brid.transition({
-                right: visualWidth
-            }, 15000, 'linear');
-        }
-        return {
-            fly: function() {
-                run();
-            },
-            stop: function() {
-
-            }
-        }
-    }
 
 
     ///////
