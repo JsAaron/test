@@ -33,6 +33,13 @@ var Qixi = function() {
         waitFlower   : 500 //模拟取花的等待时间
     }
 
+    /////////
+    //背景音乐 //
+    /////////
+    var audio = new Audio('music/1.wav');
+    audio.autoplay = true;
+    audio.play();
+
     //如果启动了dubug状态
     var debug = 0
     if (debug) {
@@ -104,6 +111,7 @@ var Qixi = function() {
     // 小孩走路 //
     //////////
     var boy = BoyWalk();
+
     // return
     //开始走路
     boy.walkTo(setTime.walkToThird, 0.6)
@@ -151,6 +159,18 @@ var Qixi = function() {
                 });
             }, setTime.waitRotate)
         });
+
+
+    //监听页面移动变化
+    swipe.watch('move', function(distance) {
+        console.log(distance)
+    })
+
+
+    //监听页面移动完成
+    swipe.watch('complete', function() {})
+
+
 
     /**
      * 小孩走路

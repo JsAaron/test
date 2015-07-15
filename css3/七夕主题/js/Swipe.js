@@ -34,19 +34,43 @@ function Swipe(container, options) {
         })
     })
 
+    var isComplete = false;
+    var timer;
+    var callbacks = {};//注册回调
+
+    //动画结束后通知事件
+    container[0].addEventListener('transitionend', function() {
+        isComplete = true;
+        callbacks.complete();
+    }, false)
+
+    //循环获取坐标
+    function monitorOffet(element) {
+        timer = setTimeout(function() {
+            if (isComplete) {
+                clearInterval(timer)
+                return;
+            }
+            callbacks.move(element.offset().left);
+            monitorOffet(element)
+        }, 500)
+    }
+
+    //注册监听器
+    swipe.watch = function(eventName, callback) {
+        callbacks[eventName] = callback;
+    }
+
     //监控完成与移动
     swipe.scrollTo = function(x, speed) {
         //执行动画移动
         element.css({
-            'transition-timing-function': 'linear',
-            'transition-duration': speed + 'ms',
-            'transform': 'translate3d(-' + x + 'px,0px,0px)'
+            'transition-timing-function' : 'linear',
+            'transition-duration'        : speed + 'ms',
+            'transform'                  : 'translate3d(-' + x + 'px,0px,0px)'
         })
-        //动画结束后通知事件
-        container[0].addEventListener('transitionend', function() {
-            isComplete = true;
-            callbacks.complete();
-        }, false)
+        //获取当前坐标
+        monitorOffet(element);
         return this;
     }
 
