@@ -51,6 +51,7 @@ var Qixi = function() {
         swipe.scrollTo(distX, time)
     }
 
+
     ////////
     //小女孩 //
     ////////
@@ -70,6 +71,19 @@ var Qixi = function() {
         },
         getWidth: function() {
             return this.elem.width()
+        }
+    }
+
+    ///////////
+    //loge动画 //
+    ///////////
+    var logo = {
+        elem: $('.logo'),
+        run: function() {
+            this.elem.addClass('logolightSpeedIn')
+                .on('webkitAnimationEnd', function() {
+                    $(this).addClass('logoshake')
+                })
         }
     }
 
@@ -117,6 +131,8 @@ var Qixi = function() {
             setTimeout(function() {
                 girl.rotate();
                 boy.rotate(function() {
+                    //开始logo动画
+                    logo.run()
                     //如果转身完毕
                     //开始飘花
                     snowflake()

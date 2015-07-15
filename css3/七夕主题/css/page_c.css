@@ -252,15 +252,74 @@
     }
 }
 
-@-webkit-keyframes flash1 {
-    /*透明度由0到1*/
-    
-    0% {
-        opacity: 0;
-        /*透明度为0*/
-    }
-    100% {
-        opacity: 1;
-        /*透明度为1*/
-    }
+
+/*文字效果*/
+.logo{
+    width: 185px;
+    height: 81px;
+    background-image: url(../images/logo.png);
+    z-index: 999999;
+    position: absolute;
+    left: 50%;
+    margin-left: -92.5px;
+    top:30px;
+    display: none;
 }
+
+
+.logolightSpeedIn {
+  -webkit-animation-name: lightSpeedIn;
+  -webkit-animation-timing-function: ease-out;
+  -webkit-animation-duration:1s;
+  display: block;
+}
+
+.logoshake{
+ -webkit-animation-name: shake;
+  -webkit-animation-duration:0.5s;
+}
+
+@-webkit-keyframes lightSpeedIn {
+  0% {
+    -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
+    transform: translate3d(100%, 0, 0) skewX(-30deg);
+    opacity: 0;
+  }
+
+  60% {
+    -webkit-transform: skewX(20deg);
+    transform: skewX(20deg);
+    opacity: 1;
+  }
+
+  80% {
+    -webkit-transform: skewX(-5deg);
+    transform: skewX(-5deg);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+
+@-webkit-keyframes shake {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+  }
+}
+
