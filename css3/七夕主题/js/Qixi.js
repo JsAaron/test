@@ -152,13 +152,6 @@ var Qixi = function() {
             }, setTime.waitRotate)
         });
 
-
-    //监听页面移动变化
-    swipe.watch('move', function(distance) {})
-        //监听页面移动完成
-    swipe.watch('complete', function() {})
-
-
     /**
      * 小孩走路
      * @param {[type]} container [description]

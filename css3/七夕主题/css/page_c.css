@@ -275,7 +275,7 @@
 }
 
 .logoshake{
- -webkit-animation-name: shake;
+ -webkit-animation-name: logoshake;
   -webkit-animation-duration:0.5s;
 }
 
@@ -306,7 +306,7 @@
 }
 
 
-@-webkit-keyframes shake {
+@-webkit-keyframes logoshake {
   0%, 100% {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
