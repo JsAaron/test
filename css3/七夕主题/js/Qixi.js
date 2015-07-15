@@ -36,7 +36,7 @@ var Qixi = function() {
     /////////
     //背景音乐 //
     /////////
-    var audio = new Audio('music/1.wav');
+    var audio = new Audio('music/happy.wav');
     audio.autoplay = true;
     audio.play();
 
