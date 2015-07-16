@@ -289,10 +289,6 @@ var Qixi = function() {
                 //恢复图片
                 $boy.removeClass('slowWalk slowFlolerWalk').addClass('boyOriginal')
             },
-            //恢复走路
-            restoreWalk: function() {
-                restoreWalk();
-            },
             //走进商店
             toShop: function() {
                 return walkToShop.apply(null, arguments);
@@ -303,8 +299,8 @@ var Qixi = function() {
             },
             //转身动作
             rotate: function(callback) {
+                restoreWalk()
                 $boy.addClass('boy-rotate')
-                this.restoreWalk();
                 //监听转身完毕
                 if (callback) {
                     $boy[0].addEventListener("animationend", function() { //动画结束时事件 
