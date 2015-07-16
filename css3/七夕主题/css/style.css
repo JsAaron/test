@@ -296,7 +296,7 @@ body {
 
 @-moz-keyframes boy-rotate {
     0% {
-        background-position: -603px -291px;
+        /*background-position: -603px -291px;*/
     }
     16.7% {
         background-position: -150px -0px;

@@ -101,8 +101,8 @@ var Qixi = function() {
         elem: $('.logo'),
         run: function() {
             this.elem.addClass('logolightSpeedIn')
-                .on('webkitAnimationEnd', function() {
-                    $(this).addClass('logoshake')
+                .on('animationend', function() {
+                    $(this).addClass('logoshake').off();
                 })
         }
     }
@@ -301,11 +301,12 @@ var Qixi = function() {
             rotate: function(callback) {
                 restoreWalk()
                 $boy.addClass('boy-rotate')
-                //监听转身完毕
+                    //监听转身完毕
                 if (callback) {
-                    $boy[0].addEventListener("animationend", function() { //动画结束时事件 
+                    $boy.on('animationend', function() {
                         callback()
-                    }, false);
+                        $(this).off();
+                    })
                 }
             },
             //获取男孩的宽度
