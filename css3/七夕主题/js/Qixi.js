@@ -307,14 +307,9 @@ var Qixi = function() {
                 this.restoreWalk();
                 //监听转身完毕
                 if (callback) {
-                    $boy[0].addEventListener("webkitAnimationEnd", function() { //动画结束时事件 
+                    $boy[0].addEventListener("animationend", function() { //动画结束时事件 
                         callback()
                     }, false);
-                    if(navigator.userAgent.indexOf('Firefox') >= 0){
-                        setTimeout(function(){
-                            callback()
-                        },0)
-                    }
                 }
             },
             //获取男孩的宽度
