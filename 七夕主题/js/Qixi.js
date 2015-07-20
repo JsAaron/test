@@ -12,47 +12,47 @@ var Qixi = function() {
     var confi = {
 
         //是否维持缩放比
-        keepZoomRatio:false,
+        keepZoomRatio: false,
 
         //设置容器尺寸
         //否则默认全屏
         //如果设置，需要输入具体的px值
         layer: {
-            'width'  : '100%',
-            'height' : '100%',
-            'top'    : 0,
-            'left'   : 0
+            'width': '100%',
+            'height': '100%',
+            'top': 0,
+            'left': 0
         },
 
         //音乐配置
         audio: {
-            enable   : false, //是否开启音乐
-            playURl  : 'music/happy.wav', //正常播放地址
-            cycleURL : 'music/circulation.wav' //正常循环播放地址
+            enable: false, //是否开启音乐
+            playURl: 'music/happy.wav', //正常播放地址
+            cycleURL: 'music/circulation.wav' //正常循环播放地址
         },
 
         //时间设置(时间毫秒）
         setTime: {
-            walkToThird  : 6000, //走第一段路，1/3屏幕宽度所用的时间，走完毕背景动
-            walkToMiddle : 6500, //走第二段路，1/2屏幕宽度所用的时间，走到商店
-            walkToEnd    : 6500, //走第三段路，走到桥
-            
-            walkTobridge : 2000, //上桥
-            bridgeWalk   : 2000, //桥上走路到中间
-            
-            walkToShop   : 1000, //进商店时间
-            walkOutShop  : 1000, //出商店时间
-            
-            openDoorTime : 800, //开门时间
-            shutDoorTime : 500, //关门时间
-            
-            waitRotate   : 850, //男女等待转身的时间
-            waitFlower   : 800 //模拟取花的等待时间
+            walkToThird: 6000, //走第一段路，1/3屏幕宽度所用的时间，走完毕背景动
+            walkToMiddle: 6500, //走第二段路，1/2屏幕宽度所用的时间，走到商店
+            walkToEnd: 6500, //走第三段路，走到桥
+
+            walkTobridge: 2000, //上桥
+            bridgeWalk: 2000, //桥上走路到中间
+
+            walkToShop: 1000, //进商店时间
+            walkOutShop: 1000, //出商店时间
+
+            openDoorTime: 800, //开门时间
+            shutDoorTime: 500, //关门时间
+
+            waitRotate: 850, //男女等待转身的时间
+            waitFlower: 800 //模拟取花的等待时间
         },
 
         //雪花图路径
         //填入绝对地址
-        snowflakeURl :[
+        snowflakeURl: [
             'images/snowflake/snowflake1.png',
             'images/snowflake/snowflake2.png',
             'images/snowflake/snowflake3.png',
@@ -71,16 +71,16 @@ var Qixi = function() {
     }
 
     //启用正比缩放处理
-    if(confi.keepZoomRatio){
+    if (confi.keepZoomRatio) {
         //原始比例
-        var proportionY   = 900/1440
+        var proportionY = 900 / 1440
         var screenHeight = $(document).height();
         //维持正比缩放的高度
         var zooomHeight = screenHeight * proportionY;
-        var zooomTop = (screenHeight - zooomHeight) /2 
-        //设置正比缩放的数据
+        var zooomTop = (screenHeight - zooomHeight) / 2
+            //设置正比缩放的数据
         confi.layer.height = zooomHeight;
-        confi.layer.top    = zooomTop;
+        confi.layer.top = zooomTop;
     }
 
     //走过的位置
@@ -93,23 +93,29 @@ var Qixi = function() {
     container.css(confi.layer)
 
     //页面可视区域
-    var visualWidth  = container.width()
+    var visualWidth = container.width()
     var visualHeight = container.height()
+
+    //获取数据
+    var getValue = function(className) {
+        var $elem = $('' + className + '')
+        //走路的路线坐标
+        return {
+            height: $elem.height(),
+            top: $elem.position().top
+        }
+    }
 
     //路的Y轴
     var pathY = function() {
-        var $a_background_middle = $('.a_background_middle')
-        //走路的路线坐标
-        var pathHeight = $a_background_middle.height();
-        var pathTop = $a_background_middle.position().top;
-        return pathTop + pathHeight / 2
+        var data = getValue('.a_background_middle')
+        return data.top + data.height / 2
     }()
 
     //桥的Y轴
     var bridgeY = function() {
-        var $c_background_middle = $('.c_background_middle')
-        var bridgeTop = $c_background_middle.position().top;
-        return bridgeTop;
+        var data = getValue('.c_background_middle')
+        return data.top
     }()
 
     //动画结束事件
@@ -148,7 +154,7 @@ var Qixi = function() {
     ////////
     var girl = {
         elem: $('.girl'),
-        getHeight:function(){
+        getHeight: function() {
             return this.elem.height()
         },
         //转身动作
@@ -157,8 +163,8 @@ var Qixi = function() {
         },
         setOffset: function() {
             this.elem.css({
-                left : visualWidth / 2,
-                top  : bridgeY - this.getHeight()
+                left: visualWidth / 2,
+                top: bridgeY - this.getHeight()
             })
         },
         getOffset: function() {
@@ -225,7 +231,7 @@ var Qixi = function() {
             return boy.walkTo(confi.setTime.walkToEnd, 0.1)
         }).then(function() {
             //上桥   
-            return boy.walkTo(confi.setTime.walkTobridge, 0.25, (bridgeY - girl.getHeight()) / visualHeight )
+            return boy.walkTo(confi.setTime.walkTobridge, 0.25, (bridgeY - girl.getHeight()) / visualHeight)
         }).then(function() {
             //实际走路的比例
             var proportionX = (girl.getOffset().left - boy.getWidth() - instanceX + girl.getWidth() / 5) / visualWidth;
@@ -257,7 +263,7 @@ var Qixi = function() {
         //走路对象
         var $boy = $("#boy");
 
-        var boyWidth  = $boy.width();
+        var boyWidth = $boy.width();
         var boyHeight = $boy.height();
 
         //设置下高度    
@@ -527,18 +533,18 @@ var Qixi = function() {
         };
         //创建一个雪花元素
         function createSnowBox() {
-            var url = getImagesName()
-            return $('<div class="snowbox" />').css({
-                'width': 41,
-                'height': 41,
-                'position': 'absolute',
-                'backgroundSize': 'cover',
-                'zIndex': 100000,
-                'top': '-41px',
-                'backgroundImage': 'url(' + url + ')'
-            }).addClass('snowRoll')
-        }
-        //开始飘花
+                var url = getImagesName()
+                return $('<div class="snowbox" />').css({
+                    'width': 41,
+                    'height': 41,
+                    'position': 'absolute',
+                    'backgroundSize': 'cover',
+                    'zIndex': 100000,
+                    'top': '-41px',
+                    'backgroundImage': 'url(' + url + ')'
+                }).addClass('snowRoll')
+            }
+            //开始飘花
         setInterval(function() {
             //运动的轨迹
             var startPositionLeft = Math.random() * visualWidth - 100,
