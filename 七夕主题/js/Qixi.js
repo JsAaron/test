@@ -11,12 +11,15 @@ var Qixi = function() {
 
     var confi = {
 
+        //是否维持缩放比
+        keepZoomRatio:false,
+
         //设置容器尺寸
         //否则默认全屏
         //如果设置，需要输入具体的px值
         layer: {
             'width'  : '100%',
-            'height' : '900',
+            'height' : '100%',
             'top'    : 0,
             'left'   : 0
         },
@@ -67,6 +70,19 @@ var Qixi = function() {
         })
     }
 
+    //启用正比缩放处理
+    if(confi.keepZoomRatio){
+        //原始比例
+        var proportionY   = 900/1440
+        var screenHeight = $(document).height();
+        //维持正比缩放的高度
+        var zooomHeight = screenHeight * proportionY;
+        var zooomTop = (screenHeight - zooomHeight) /2 
+        //设置正比缩放的数据
+        confi.layer.height = zooomHeight;
+        confi.layer.top    = zooomTop;
+    }
+
     //走过的位置
     var instanceX;
 
@@ -77,7 +93,7 @@ var Qixi = function() {
     container.css(confi.layer)
 
     //页面可视区域
-    var visualWidth = container.width()
+    var visualWidth  = container.width()
     var visualHeight = container.height()
 
     //路的Y轴
@@ -85,7 +101,7 @@ var Qixi = function() {
         var $a_background_middle = $('.a_background_middle')
         //走路的路线坐标
         var pathHeight = $a_background_middle.height();
-        var pathTop = $a_background_middle.offset().top;
+        var pathTop = $a_background_middle.position().top;
         return pathTop + pathHeight / 2
     }()
 
