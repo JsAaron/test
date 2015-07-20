@@ -23,7 +23,7 @@ var Qixi = function() {
 
         //音乐配置
         audio: {
-            enable   : true, //是否开启音乐
+            enable   : false, //是否开启音乐
             playURl  : 'music/happy.wav', //正常播放地址
             cycleURL : 'music/circulation.wav' //正常循环播放地址
         },
@@ -78,13 +78,26 @@ var Qixi = function() {
         width  :1440,
         height :900
     }
-    //缩放后的新比例
+    //人物的高度比
     var topProportion = visualHeight / originalSize.height;
     //桥上的高度
     var topBirdgeY = 0.36 * topProportion * visualHeight;
     //人物高度距离
-    var topDistance = (visualHeight / 2) * topProportion;
+    var pp;
+    if (!pp && visualHeight >= 200 && visualHeight <= 400) {
+        pp = 4
+    }
+    if (!pp && visualHeight >= 900 && visualHeight < 1100) {
+        pp = 2.1
+    }
+    if (!pp && visualHeight >= 1100) {
+        pp = 2.3 *  (visualHeight - 1150 + visualHeight) / visualHeight
+    }
+    if (!pp) {
+        pp = 2
+    }
 
+    var topDistance = (visualHeight  / pp * topProportion) 
     //动画结束事件
     var animationEnd = (function() {
         var explorer = navigator.userAgent;
@@ -96,7 +109,7 @@ var Qixi = function() {
 
 
     //如果启动了dubug状态
-    var debug = 0
+    var debug = 100
     if (debug) {
         $.each(confi.setTime, function(key, val) {
             confi.setTime[key] = 500
@@ -509,8 +522,6 @@ var Qixi = function() {
         //创建一个雪花元素
         function createSnowBox() {
             var url = getImagesName()
-
-            console.log(url)
             return $('<div class="snowbox" />').css({
                 'width': 41,
                 'height': 41,
