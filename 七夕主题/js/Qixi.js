@@ -16,7 +16,7 @@ var Qixi = function() {
         //如果设置，需要输入具体的px值
         layer: {
             'width'  : '100%',
-            'height' : '100%',
+            'height' : '600',
             'top'    : 0,
             'left'   : 0
         },
@@ -252,9 +252,9 @@ var Qixi = function() {
         var $boy = $("#boy");
 
         //设置下高度
-        $boy.css({
-            top: topDistance
-        })
+        // $boy.css({
+        //     top: topDistance
+        // })
 
         var boyWidth  = $boy.width();
         var boyHeight = $boy.height();
