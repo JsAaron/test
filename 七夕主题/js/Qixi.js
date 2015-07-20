@@ -23,7 +23,7 @@ var Qixi = function() {
 
         //音乐配置
         audio: {
-            enable   : false, //是否开启音乐
+            enable   : true, //是否开启音乐
             playURl  : 'music/happy.wav', //正常播放地址
             cycleURL : 'music/circulation.wav' //正常循环播放地址
         },
@@ -73,6 +73,17 @@ var Qixi = function() {
     var visualWidth = container.width()
     var visualHeight = container.height()
 
+    //原始尺寸
+    var originalSize = {
+        width  :1440,
+        height :900
+    }
+    //缩放后的新比例
+    var topProportion = visualHeight / originalSize.height;
+    //桥上的高度
+    var topBirdgeY = 0.36 * topProportion * visualHeight;
+    //人物高度距离
+    var topDistance = (visualHeight / 2) * topProportion;
 
     //动画结束事件
     var animationEnd = (function() {
@@ -124,7 +135,8 @@ var Qixi = function() {
         },
         setOffset: function() {
             this.elem.css({
-                left: visualWidth / 2
+                left : visualWidth / 2,
+                top  : topBirdgeY
             })
         },
         getOffset: function() {
@@ -194,7 +206,7 @@ var Qixi = function() {
             return boy.walkTo(confi.setTime.walkToEnd, 0.1)
         }).then(function() {
             //上桥   
-            return boy.walkTo(confi.setTime.walkTobridge, 0.25, 0.37)
+            return boy.walkTo(confi.setTime.walkTobridge, 0.25, 0.36 * topProportion )
         }).then(function() {
             //实际走路的比例
             var proportionX = (girl.getOffset().left - boy.getWidth() - instanceX + girl.getWidth() / 5) / visualWidth;
@@ -225,7 +237,13 @@ var Qixi = function() {
 
         //走路对象
         var $boy = $("#boy");
-        var boyWidth = $boy.width();
+
+        //设置下高度
+        $boy.css({
+            top: topDistance
+        })
+
+        var boyWidth  = $boy.width();
         var boyHeight = $boy.height();
 
         //暂停走路
