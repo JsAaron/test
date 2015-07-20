@@ -109,7 +109,7 @@ var Qixi = function() {
 
 
     //如果启动了dubug状态
-    var debug = 100
+    var debug = 0
     if (debug) {
         $.each(confi.setTime, function(key, val) {
             confi.setTime[key] = 500
