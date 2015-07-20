@@ -16,7 +16,7 @@ var Qixi = function() {
         //如果设置，需要输入具体的px值
         layer: {
             'width'  : '100%',
-            'height' : '600',
+            'height' : '1200',
             'top'    : 0,
             'left'   : 0
         },
@@ -78,26 +78,20 @@ var Qixi = function() {
         width  :1440,
         height :900
     }
+
+    var $a_background_middle = $('.a_background_middle')
+    //走路的路线坐标
+    var pathHeight = $a_background_middle.height();
+    var pathTop = $a_background_middle.offset().top;
+    //中间点
+    var pathY = pathTop + pathHeight / 2
+
     //人物的高度比
     var topProportion = visualHeight / originalSize.height;
     //桥上的高度
     var topBirdgeY = 0.36 * topProportion * visualHeight;
-    //人物高度距离
-    var pp;
-    if (!pp && visualHeight >= 200 && visualHeight <= 400) {
-        pp = 4
-    }
-    if (!pp && visualHeight >= 900 && visualHeight < 1100) {
-        pp = 2.1
-    }
-    if (!pp && visualHeight >= 1100) {
-        pp = 2.3 *  (visualHeight - 1150 + visualHeight) / visualHeight
-    }
-    if (!pp) {
-        pp = 2
-    }
 
-    var topDistance = (visualHeight  / pp * topProportion) 
+
     //动画结束事件
     var animationEnd = (function() {
         var explorer = navigator.userAgent;
@@ -186,9 +180,6 @@ var Qixi = function() {
         }
     }
 
-
-    // snowflake();
-    // return
     //////////
     // 小孩走路 //
     //////////
@@ -251,13 +242,13 @@ var Qixi = function() {
         //走路对象
         var $boy = $("#boy");
 
-        //设置下高度
-        // $boy.css({
-        //     top: topDistance
-        // })
-
         var boyWidth  = $boy.width();
         var boyHeight = $boy.height();
+
+        //设置下高度    
+        $boy.css({
+            top: pathY - boyHeight + 25
+        })
 
         //暂停走路
         function pauseWalk() {
