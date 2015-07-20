@@ -5,6 +5,75 @@
  */
 var Qixi = function() {
 
+    //////////
+    // 参数设置 //
+    //////////
+
+    var confi = {
+
+        //设置容器尺寸
+        //否则默认全屏
+        //如果设置，需要输入具体的px值
+        layer: {
+            'width'  : '100%',
+            'height' : '100%',
+            'top'    : 0,
+            'left'   : 0
+        },
+
+        //音乐配置
+        audio: {
+            enable   : false, //是否开启音乐
+            playURl  : 'music/happy.wav', //正常播放地址
+            cycleURL : 'music/circulation.wav' //正常循环播放地址
+        },
+
+        //时间设置(时间毫秒）
+        setTime: {
+            walkToThird  : 6000, //走第一段路，1/3屏幕宽度所用的时间，走完毕背景动
+            walkToMiddle : 6500, //走第二段路，1/2屏幕宽度所用的时间，走到商店
+            walkToEnd    : 6500, //走第三段路，走到桥
+            
+            walkTobridge : 2000, //上桥
+            bridgeWalk   : 2000, //桥上走路到中间
+            
+            walkToShop   : 1000, //进商店时间
+            walkOutShop  : 1000, //出商店时间
+            
+            openDoorTime : 800, //开门时间
+            shutDoorTime : 500, //关门时间
+            
+            waitRotate   : 850, //男女等待转身的时间
+            waitFlower   : 800 //模拟取花的等待时间
+        },
+
+        //雪花图路径
+        //填入绝对地址
+        snowflakeURl :[
+            'images/snowflake/snowflake1.png',
+            'images/snowflake/snowflake2.png',
+            'images/snowflake/snowflake3.png',
+            'images/snowflake/snowflake4.png',
+            'images/snowflake/snowflake5.png',
+            'images/snowflake/snowflake6.png'
+        ]
+    }
+
+
+    //走过的位置
+    var instanceX;
+
+    //页面容器
+    var container = $("#content");
+
+    //设置新的页面容器大小
+    container.css(confi.layer)
+
+    //页面可视区域
+    var visualWidth = container.width()
+    var visualHeight = container.height()
+
+
     //动画结束事件
     var animationEnd = (function() {
         var explorer = navigator.userAgent;
@@ -14,51 +83,24 @@ var Qixi = function() {
         return 'animationend'
     })();
 
-    //走过的位置
-    var instanceX;
-
-    //页面容器
-    //
-    var container = $("#content");
-    //页面可视区域
-    var visualWidth = container.width()
-    var visualHeight = container.height()
-
-    //时间设置(时间毫秒）
-    var setTime = {
-        walkToThird: 6000, //走第一段路，1/3屏幕宽度所用的时间，走完毕背景动
-        walkToMiddle: 6500, //走第二段路，1/2屏幕宽度所用的时间，走到商店
-        walkToEnd: 6500, //走第三段路，走到桥
-
-        walkTobridge: 2000, //上桥
-        bridgeWalk: 2000, //桥上走路到中间
-
-        walkToShop: 1000, //进商店时间
-        walkOutShop: 1000, //出商店时间
-
-        openDoorTime: 800, //开门时间
-        shutDoorTime: 500, //关门时间
-
-        waitRotate: 850, //男女等待转身的时间
-        waitFlower: 800 //模拟取花的等待时间
-    }
-
 
     //如果启动了dubug状态
-    var debug = 50
+    var debug = 0
     if (debug) {
-        $.each(setTime, function(key, val) {
-            setTime[key] = 500
+        $.each(confi.setTime, function(key, val) {
+            confi.setTime[key] = 500
         })
     }
 
     /////////
     //背景音乐 //
     /////////
-    var audio1 = Hmlt5Audio('music/happy.wav')
-    audio1.end(function() {
-        Hmlt5Audio('music/circulation.wav', true)
-    })
+    if (confi.audio.enable) {
+        var audio1 = Hmlt5Audio(confi.audio.playURl)
+        audio1.end(function() {
+            Hmlt5Audio(confi.audio.cycleURL, true)
+        })
+    }
 
     ///////////
     //场景页面滑动对象 //
@@ -120,18 +162,20 @@ var Qixi = function() {
     }
 
 
+    // snowflake();
+    // return
     //////////
     // 小孩走路 //
     //////////
     var boy = BoyWalk();
 
     //开始走路
-    boy.walkTo(setTime.walkToThird, 0.6)
+    boy.walkTo(confi.setTime.walkToThird, 0.6)
         .then(function() {
             //开始滚动页面
-            scrollTo(setTime.walkToMiddle, 1)
+            scrollTo(confi.setTime.walkToMiddle, 1)
                 //第二次走路
-            return boy.walkTo(setTime.walkToMiddle, 0.5)
+            return boy.walkTo(confi.setTime.walkToMiddle, 0.5)
         }).then(function() {
             //飞鸟
             bird.fly();
@@ -145,17 +189,17 @@ var Qixi = function() {
             //修正小女孩的坐标,位于中间
             girl.setOffset();
             //页面继续滚动,到结束
-            scrollTo(setTime.walkToEnd, 2);
+            scrollTo(confi.setTime.walkToEnd, 2);
             //人物要往回走1/10处
-            return boy.walkTo(setTime.walkToEnd, 0.1)
+            return boy.walkTo(confi.setTime.walkToEnd, 0.1)
         }).then(function() {
             //上桥   
-            return boy.walkTo(setTime.walkTobridge, 0.25, 0.37)
+            return boy.walkTo(confi.setTime.walkTobridge, 0.25, 0.37)
         }).then(function() {
             //实际走路的比例
             var proportionX = (girl.getOffset().left - boy.getWidth() - instanceX + girl.getWidth() / 5) / visualWidth;
             //桥上走路
-            return boy.walkTo(setTime.bridgeWalk, proportionX)
+            return boy.walkTo(confi.setTime.bridgeWalk, proportionX)
         }).then(function() {
             //复位初始状态 
             boy.resetOriginal();
@@ -169,7 +213,7 @@ var Qixi = function() {
                         //开始飘花
                     snowflake()
                 });
-            }, setTime.waitRotate)
+            }, confi.setTime.waitRotate)
         });
 
 
@@ -387,7 +431,7 @@ var Qixi = function() {
             boyObj.talkFlower();
             setTimeout(function() {
                 defer.resolve()
-            }, setTime.waitFlower)
+            }, confi.setTime.waitFlower)
             return defer
         }
 
@@ -405,7 +449,7 @@ var Qixi = function() {
         }
 
         //开门动作
-        var waitOpen = openDoor(setTime.openDoorTime)
+        var waitOpen = openDoor(confi.setTime.openDoorTime)
 
         //等待开门
         //开始执行一系列动作
@@ -413,16 +457,16 @@ var Qixi = function() {
             .then(function() {
                 lamp.bright();
                 //小孩进入商店
-                return boyObj.toShop($door, setTime.walkToShop)
+                return boyObj.toShop($door, confi.setTime.walkToShop)
             }).then(function() {
                 //取花
                 return talkFlower();
             }).then(function() {
                 //走出商店
-                return boyObj.outShop(setTime.walkOutShop)
+                return boyObj.outShop(confi.setTime.walkOutShop)
             }).then(function() {
                 //商店关门
-                shutDoor(setTime.shutDoorTime);
+                shutDoor(confi.setTime.shutDoorTime);
                 lamp.dark();
                 //开始下一套动作
                 defer.resolve();
@@ -439,24 +483,27 @@ var Qixi = function() {
     function snowflake() {
         //雪花容器
         var $flakeContainer = $('#snowflake');
+
         //随机六张图
         function getImagesName() {
-            return 'snowflake' + [Math.floor(Math.random() * 6) + 1]
+            return confi.snowflakeURl[[Math.floor(Math.random() * 6)]]
         };
         //创建一个雪花元素
         function createSnowBox() {
-                var url = 'images/snowflake/' + getImagesName() + '.png';
-                return $('<div class="snowbox" />').css({
-                    'width': 41,
-                    'height': 41,
-                    'position': 'absolute',
-                    'backgroundSize': 'cover',
-                    'zIndex': 100000,
-                    'top': '-41px',
-                    'backgroundImage': 'url(' + url + ')'
-                }).addClass('snowRoll')
-            }
-            //开始飘花
+            var url = getImagesName()
+
+            console.log(url)
+            return $('<div class="snowbox" />').css({
+                'width': 41,
+                'height': 41,
+                'position': 'absolute',
+                'backgroundSize': 'cover',
+                'zIndex': 100000,
+                'top': '-41px',
+                'backgroundImage': 'url(' + url + ')'
+            }).addClass('snowRoll')
+        }
+        //开始飘花
         setInterval(function() {
             //运动的轨迹
             var startPositionLeft = Math.random() * visualWidth - 100,
