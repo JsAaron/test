@@ -16,7 +16,7 @@ var Qixi = function() {
         //如果设置，需要输入具体的px值
         layer: {
             'width'  : '100%',
-            'height' : '1200',
+            'height' : '900',
             'top'    : 0,
             'left'   : 0
         },
@@ -59,6 +59,13 @@ var Qixi = function() {
         ]
     }
 
+    //如果启动了dubug状态
+    var debug = 0
+    if (debug) {
+        $.each(confi.setTime, function(key, val) {
+            confi.setTime[key] = 500
+        })
+    }
 
     //走过的位置
     var instanceX;
@@ -73,24 +80,21 @@ var Qixi = function() {
     var visualWidth = container.width()
     var visualHeight = container.height()
 
-    //原始尺寸
-    var originalSize = {
-        width  :1440,
-        height :900
-    }
+    //路的Y轴
+    var pathY = function() {
+        var $a_background_middle = $('.a_background_middle')
+        //走路的路线坐标
+        var pathHeight = $a_background_middle.height();
+        var pathTop = $a_background_middle.offset().top;
+        return pathTop + pathHeight / 2
+    }()
 
-    var $a_background_middle = $('.a_background_middle')
-    //走路的路线坐标
-    var pathHeight = $a_background_middle.height();
-    var pathTop = $a_background_middle.offset().top;
-    //中间点
-    var pathY = pathTop + pathHeight / 2
-
-    //人物的高度比
-    var topProportion = visualHeight / originalSize.height;
-    //桥上的高度
-    var topBirdgeY = 0.36 * topProportion * visualHeight;
-
+    //桥的Y轴
+    var bridgeY = function() {
+        var $c_background_middle = $('.c_background_middle')
+        var bridgeTop = $c_background_middle.position().top;
+        return bridgeTop;
+    }()
 
     //动画结束事件
     var animationEnd = (function() {
@@ -101,14 +105,6 @@ var Qixi = function() {
         return 'animationend'
     })();
 
-
-    //如果启动了dubug状态
-    var debug = 0
-    if (debug) {
-        $.each(confi.setTime, function(key, val) {
-            confi.setTime[key] = 500
-        })
-    }
 
     /////////
     //背景音乐 //
@@ -136,6 +132,9 @@ var Qixi = function() {
     ////////
     var girl = {
         elem: $('.girl'),
+        getHeight:function(){
+            return this.elem.height()
+        },
         //转身动作
         rotate: function() {
             this.elem.addClass('girl-rotate')
@@ -143,7 +142,7 @@ var Qixi = function() {
         setOffset: function() {
             this.elem.css({
                 left : visualWidth / 2,
-                top  : topBirdgeY
+                top  : bridgeY - this.getHeight()
             })
         },
         getOffset: function() {
@@ -210,7 +209,7 @@ var Qixi = function() {
             return boy.walkTo(confi.setTime.walkToEnd, 0.1)
         }).then(function() {
             //上桥   
-            return boy.walkTo(confi.setTime.walkTobridge, 0.25, 0.36 * topProportion )
+            return boy.walkTo(confi.setTime.walkTobridge, 0.25, (bridgeY - girl.getHeight()) / visualHeight )
         }).then(function() {
             //实际走路的比例
             var proportionX = (girl.getOffset().left - boy.getWidth() - instanceX + girl.getWidth() / 5) / visualWidth;
