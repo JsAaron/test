@@ -7,7 +7,7 @@
  * @param {[type]} container [页面容器节点]
  * @param {[type]} options   [参数]
  */
-function Swipe(container, options) {
+function Swipe(container) {
     //获取第一个子节点
     var element = container.find(":first")
     var swipe = {};

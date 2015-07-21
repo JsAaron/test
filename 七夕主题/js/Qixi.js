@@ -4,7 +4,7 @@
  * @type {Object}
  */
 var Qixi = function() {
-
+return
     //////////
     // 参数设置 //
     //////////
@@ -14,7 +14,7 @@ var Qixi = function() {
         //是否维持缩放比
         keepZoomRatio: true,
 
-        //设置容器尺寸
+        //设置容器尺寸q
         //否则默认全屏
         //如果设置，需要输入具体的px值
         layer: {
