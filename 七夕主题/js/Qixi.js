@@ -12,7 +12,7 @@ var Qixi = function() {
     var confi = {
 
         //是否维持缩放比
-        keepZoomRatio: false,
+        keepZoomRatio: true,
 
         //设置容器尺寸
         //否则默认全屏
@@ -26,7 +26,7 @@ var Qixi = function() {
 
         //音乐配置
         audio: {
-            enable: true, //是否开启音乐
+            enable: false, //是否开启音乐
             playURl: 'music/happy.wav', //正常播放地址
             cycleURL: 'music/circulation.wav' //正常循环播放地址
         },
@@ -598,7 +598,6 @@ var Qixi = function() {
 
 
 $(function() {
-
     //七夕主题效果，开始
     Qixi()
 })
