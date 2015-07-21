@@ -26,7 +26,7 @@ var Qixi = function() {
 
         //音乐配置
         audio: {
-            enable: false, //是否开启音乐
+            enable: true, //是否开启音乐
             playURl: 'music/happy.wav', //正常播放地址
             cycleURL: 'music/circulation.wav' //正常循环播放地址
         },
@@ -78,28 +78,25 @@ var Qixi = function() {
         //维持正比缩放的高度
         var zooomHeight = screenHeight * proportionY;
         var zooomTop = (screenHeight - zooomHeight) / 2
-            //设置正比缩放的数据
+        //设置正比缩放的数据
         confi.layer.height = zooomHeight;
         confi.layer.top = zooomTop;
     }
 
     //走过的位置
     var instanceX;
-
     //页面容器
     var container = $("#content");
-
     //设置新的页面容器大小
     container.css(confi.layer)
-
     //页面可视区域
-    var visualWidth = container.width()
+    var visualWidth  = container.width()
     var visualHeight = container.height()
 
     //获取数据
     var getValue = function(className) {
         var $elem = $('' + className + '')
-        //走路的路线坐标
+            //走路的路线坐标
         return {
             height: $elem.height(),
             top: $elem.position().top
@@ -319,13 +316,13 @@ var Qixi = function() {
         function walkToShop(doorObj, runTime) {
             var defer = $.Deferred();
             //门的坐标
-            var offsetDoor = doorObj.offset();
+            var offsetDoor     = doorObj.offset();
             var doorOffsetLeft = offsetDoor.left;
-            var doorOffsetTop = offsetDoor.top;
+            var doorOffsetTop  = offsetDoor.top;
             //小孩当前的坐标
-            var posBoy = $boy.position();
+            var posBoy     = $boy.position();
             var boyPoxLeft = posBoy.left;
-            var boyPoxTop = posBoy.top;
+            var boyPoxTop  = posBoy.top;
 
             //中间位置
             var boyMiddle = $boy.width() / 2
@@ -334,10 +331,11 @@ var Qixi = function() {
 
             //当前需要移动的坐标
             instanceX = (doorOffsetLeft + doorMiddle) - (boyPoxLeft + boyMiddle);
-            var instanceY = boyPoxTop - doorOffsetTop;
+            var instanceY = boyPoxTop - doorOffsetTop ;
+
             //开始走路
             var walkPlay = stratRun({
-                transform: 'translate3d(' + instanceX + 'px, -' + instanceY + 'px, 0)',
+                transform: 'translate(' + instanceX + 'px,-'+ instanceY +'px),scale(0.3,0.3)',
                 opacity: 0.1
             }, runTime);
             //走路完毕
@@ -356,7 +354,7 @@ var Qixi = function() {
             restoreWalk();
             //开始走路
             var walkPlay = stratRun({
-                    transform: 'translate3d(' + instanceX + 'px,0px,0px)',
+                    transform: 'translate(' + instanceX + 'px,0px),scale(1,1)',
                     opacity: 1
                 }, runTime)
                 //走路完毕
@@ -533,18 +531,18 @@ var Qixi = function() {
         };
         //创建一个雪花元素
         function createSnowBox() {
-                var url = getImagesName()
-                return $('<div class="snowbox" />').css({
-                    'width': 41,
-                    'height': 41,
-                    'position': 'absolute',
-                    'backgroundSize': 'cover',
-                    'zIndex': 100000,
-                    'top': '-41px',
-                    'backgroundImage': 'url(' + url + ')'
-                }).addClass('snowRoll')
-            }
-            //开始飘花
+            var url = getImagesName()
+            return $('<div class="snowbox" />').css({
+                'width': 41,
+                'height': 41,
+                'position': 'absolute',
+                'backgroundSize': 'cover',
+                'zIndex': 100000,
+                'top': '-41px',
+                'backgroundImage': 'url(' + url + ')'
+            }).addClass('snowRoll')
+        }
+        //开始飘花
         setInterval(function() {
             //运动的轨迹
             var startPositionLeft = Math.random() * visualWidth - 100,
