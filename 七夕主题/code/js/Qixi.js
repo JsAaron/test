@@ -4,7 +4,7 @@
  * @type {Object}
  */
 var Qixi = function() {
-return
+
     //////////
     // 参数设置 //
     //////////
