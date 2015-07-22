@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>慕课七夕主题</title>
+    <style type="text/css">
+        div{
+            color: red;
+        }
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+</head>
+
+<body>
+    <button>点击测试$.Deferred处理</button>
+    </br>
+    显示进度:<div></div>
+    <script type="text/javascript">
+    $('button').click(function() {
+
+        var $div = $('div')
+
+        var dtd = $.Deferred(); // 生成Deferred对象
+        $div.append('创建Deferred对象</br>')　　
+
+        var wait = function() {　　　　
+            var tasks = function() {　　　　　　
+                $div.append("异步执行完毕</br>");　　　　　　
+                dtd.resolve(); // 改变Deferred对象的执行状态
+                　　　　
+            };　　　　
+            //模拟一个异步任务执行2秒
+            setTimeout(tasks, 2000);　　
+        };　　
+
+        //执行一段操作
+        wait()　
+
+//如果操作成功
+dtd.then(function() {
+   //1
+}).then(function() {
+   //2
+}).then(function() {
+  //3
+})
+
+    })
+    </script>
+</body>
+
+</html>
