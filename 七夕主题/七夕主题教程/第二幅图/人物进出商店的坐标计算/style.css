@@ -55,6 +55,11 @@
        height: 291px;
        background: url(http://img.mukewang.com/55ade248000198ae10550582.png) -0px -291px no-repeat;
    }
+   /*人物暂停*/
+   
+   .pauseWalk {
+       -webkit-animation-play-state: paused;
+   }
    
    .slowWalk {
        -webkit-animation-name: person-slow;

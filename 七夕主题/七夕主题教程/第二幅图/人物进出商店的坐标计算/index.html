@@ -9,8 +9,6 @@
     <link rel='stylesheet' href='pageB.css' />
     <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
     <script type="text/javascript" src="http://img.mukewang.com/down/55ac9ea30001ace700000000.js"></script>
-    <script type="text/javascript" src="Swipe.js"></script>
-    <script type="text/javascript" src="BoyWalk.js"></script>
 </head>
 
 <body>
@@ -52,8 +50,7 @@
         <div id="boy" class="charector"></div>
     </div>
     <div class="button">
-        <button>开门</button>
-        <button>关门</button>
+        <button>开始</button>
     </div>
 </body>
 <script type="text/javascript">
@@ -75,74 +72,42 @@ $(function() {
     swipe.scrollTo(container.width(), 0)
 
 
-    function doorAction(left, right, time) {
-        var $door = $('.door');
-        var doorLeft = $('.door-left');
-        var doorRight = $('.door-right')
-        var defer = $.Deferred();
-        var count = 2;
-        //等待开门完成
-        var complete = function() {
-            if (count == 1) {
-                defer.resolve();
-                return;
-            }
-            count--
-        }
-        doorLeft.transition({
-            'left': left
-        }, time, complete)
-        doorRight.transition({
-            'left': right
-        }, time, complete)
-        return defer
-    }
+    function startRun() {
 
-    //开门
-    function openDoor() {
-        return doorAction('-50%', '100%', 2000)
-    }
+        var boy = BoyWalk()
 
-    //关门
-    function shutDoor() {
-        return doorAction('0%', '50%', 2000)
+        boy.walkTo(2000, 0.45)
+            .then(function() {
+                //暂停走路
+                boy.stopWalk()
+            })
+            .then(function() {
+                //开门
+                return openDoor();
+            })
+            .then(function() {
+                //开灯
+                lamp.bright()
+            })
+            .then(function() {
+                //进商店
+                return boy.toShop(2000)
+            }).then(function() {
+                //出商店
+                return boy.outShop(2000)
+            }).then(function() {
+                //灯暗
+                lamp.dark()
+            })
     }
 
 
-    ///////////
-    //灯动画 //
-    ///////////
-    var lamp = {
-        elem: $('.b_background'),
-        bright: function() {
-            this.elem.addClass('lamp-bright')
-        },
-        dark: function() {
-            this.elem.removeClass('lamp-bright')
-        }
-    }
-
-    //开门
-    $("button:first").click(function() {
-        //开门
-        openDoor().then(function() {
-            //开灯
-            lamp.bright();
-        })
-    })
-
-    //关门
-    $("button:last").click(function() {
-        //关门
-        shutDoor().then(function() {
-            //灯灭
-            lamp.dark();
-        });
-
-    })
-
+    //开始
+    $("button:first").click(startRun)
 
 })
 </script>
+<script type="text/javascript" src="Swipe.js"></script>
+<script type="text/javascript" src="Qixi.js"></script>
 
 </html>
