@@ -52,8 +52,7 @@
         <div id="boy" class="charector"></div>
     </div>
     <div class="button">
-        <button>开门</button>
-        <button>关门</button>
+        <button>开始</button>
     </div>
 </body>
 <script type="text/javascript">
@@ -75,72 +74,32 @@ $(function() {
     swipe.scrollTo(container.width(), 0)
 
 
-    function doorAction(left, right, time) {
-        var $door = $('.door');
-        var doorLeft = $('.door-left');
-        var doorRight = $('.door-right')
-        var defer = $.Deferred();
-        var count = 2;
-        //等待开门完成
-        var complete = function() {
-            if (count == 1) {
-                defer.resolve();
-                return;
-            }
-            count--
-        }
-        doorLeft.transition({
-            'left': left
-        }, time, complete)
-        doorRight.transition({
-            'left': right
-        }, time, complete)
-        return defer
-    }
-
-    //开门
-    function openDoor() {
-        return doorAction('-50%', '100%', 2000)
-    }
-
-    //关门
-    function shutDoor() {
-        return doorAction('0%', '50%', 2000)
-    }
-
-
-    ///////////
-    //灯动画 //
-    ///////////
-    var lamp = {
-        elem: $('.b_background'),
-        bright: function() {
-            this.elem.addClass('lamp-bright')
-        },
-        dark: function() {
-            this.elem.removeClass('lamp-bright')
-        }
-    }
-
-    //开门
+    //开始
     $("button:first").click(function() {
-        //开门
-        openDoor().then(function() {
-            //开灯
-            lamp.bright();
-        })
+
+        //太阳公转
+        $("#sun").addClass('rotation')
+
+        //飘云
+        $(".cloud:first").addClass('cloud1')
+        $(".cloud:last").addClass('cloud2')
+
+        //////////
+        // 小孩走路 //
+        //////////
+        var boy = BoyWalk();
+
+        //开始第一次走路
+        boy.walkTo(2000, 0.2)
+            .then(function() {
+                //第一次走路完成
+                //开始页面滚动
+                scrollTo(5000, 1)
+            }).then(function() {
+                //第二次走路
+                return boy.walkTo(5000, 0.5)
+            })
     })
-
-    //关门
-    $("button:last").click(function() {
-        //关门
-        shutDoor().then(function() {
-            //灯灭
-            lamp.dark();
-        });
-
-    })
-
 
 })
 </script>
