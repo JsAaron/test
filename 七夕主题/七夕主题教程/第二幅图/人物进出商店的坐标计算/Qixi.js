@@ -138,26 +138,31 @@
         function walkToShop(runTime) {
             var defer = $.Deferred();
             var doorObj = $('.door')
-                //门的坐标
+            //门的坐标
             var offsetDoor = doorObj.offset();
             var doorOffsetLeft = offsetDoor.left;
-            var doorOffsetTop = offsetDoor.top;
+            var doorOffsetTop  = offsetDoor.top;
             //小孩当前的坐标
             var posBoy = $boy.position();
             var boyPoxLeft = posBoy.left;
             var boyPoxTop = posBoy.top;
 
             //中间位置
-            var boyMiddle = $boy.width() / 2
-            var doorMiddle = doorObj.width() / 2;
+            var boyMiddle     = $boy.width() / 2
+            var doorMiddle    = doorObj.width() / 2;
             var doorTopMiddle = doorObj.height() / 2;
+
 
             //当前需要移动的坐标
             instanceX = (doorOffsetLeft + doorMiddle) - (boyPoxLeft + boyMiddle);
 
+            //Y的坐标
+            //top = 人物底部的top - 门中见的top值
+            instanceY = boyPoxTop + boyHeight - doorOffsetTop + (doorTopMiddle)  
+
             //开始走路
             var walkPlay = stratRun({
-                transform: 'translateX(' + instanceX + 'px),scale(0.5,0.5),skewY(-10deg)',
+                transform: 'translateX(' + instanceX + 'px),translateY(-'+ instanceY +'px),scale(0.5,0.5)',
                 opacity: 0.1
             }, 2000);
             //走路完毕
@@ -176,7 +181,7 @@
             restoreWalk();
             //开始走路
             var walkPlay = stratRun({
-                    transform: 'translateX(' + instanceX + 'px),scale(1,1),skewY(0)',
+                    transform: 'translateX(' + instanceX + 'px),translateY(0),scale(1,1)',
                     opacity: 1
                 }, runTime)
                 //走路完毕
