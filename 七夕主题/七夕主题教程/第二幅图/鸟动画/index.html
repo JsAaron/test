@@ -73,6 +73,19 @@ $(function() {
     //用来临时调整页面
     swipe.scrollTo(container.width(), 0)
 
+    /////////
+    //右边飞鸟 //
+    /////////
+    var bird = {
+        elem: $(".bird"),
+        fly: function() {
+            this.elem.addClass('birdFly')
+            this.elem.transition({
+                right: container.width()
+            }, 15000, 'linear');
+        }
+    }
+
 
     function startRun() {
 
@@ -95,6 +108,10 @@ $(function() {
                 //进商店
                 return boy.toShop(2000)
             }).then(function() {
+                //飞鸟
+                bird.fly()
+            })
+            .then(function() {
                 //出商店
                 return boy.outShop(2000)
             }).then(function() {
