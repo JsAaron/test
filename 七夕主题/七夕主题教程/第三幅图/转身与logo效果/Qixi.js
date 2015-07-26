@@ -273,6 +273,12 @@
             //获取男孩的宽度
             getWidth: function() {
                 return $boy.width();
+            },
+            //复位初始状态
+            resetOriginal: function() {
+                this.stopWalk();
+                //恢复图片
+                $boy.removeClass('slowWalk slowFlolerWalk').addClass('boyOriginal')
             }
         }
     }

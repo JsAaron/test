@@ -99,38 +99,46 @@ $(function() {
         rotate: function() {
             this.elem.addClass('girl-rotate')
         },
-        setOffset: function() {
+        setPosition: function() {
             this.elem.css({
                 left: visualWidth / 2,
                 top: bridgeY - this.getHeight()
             })
         },
-        getOffset: function() {
-            return this.elem.offset();
+        getPosition: function() {
+            return this.elem.position();
         },
         getWidth: function() {
             return this.elem.width()
         }
     };
     //修正小女孩位置
-    girl.setOffset();
+    girl.setPosition();
 
     //////////
     // 小孩走路 //
     //////////
     var boy = BoyWalk();
 
-    boy.walkTo(2000, 0.25, (bridgeY - girl.getHeight()) / visualHeight)
-        .then(function() {
-            //实际走路的比例
-            var proportionX = (girl.getOffset().left - boy.getWidth()  + girl.getWidth() / 5) / visualWidth;
-            //桥上走路
-            return boy.walkTo(2000, proportionX)
-        }).then(function() {
+    //开始
+    $("button:first").click(function() {
 
-        })
-
-
+        //第一次走路到桥底边left,top
+        boy.walkTo(2000, 0.2)
+            .then(function() {
+                //第二次走路到桥上left,top
+                return boy.walkTo(1500, 0.3, girl.getPosition().top / visualHeight)
+            })
+            .then(function() {
+                //实际走路的比例
+                var proportionX = (girl.getPosition().left - boy.getWidth() + girl.getWidth() / 5) / visualWidth;
+                //第三次桥上直走到小女孩面前
+                return boy.walkTo(1500, proportionX)
+            }).then(function() {
+                //图片还原原地停止状态
+                boy.resetOriginal();
+            })
+    })
 
 
 })
