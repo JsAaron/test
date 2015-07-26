@@ -115,10 +115,27 @@ $(function() {
     //修正小女孩位置
     girl.setPosition();
 
+
+    ///////////
+    //loge动画 //
+    ///////////
+    var logo = {
+        elem: $('.logo'),
+        run: function() {
+            this.elem.addClass('logolightSpeedIn')
+                .on(animationEnd, function() {
+                    $(this).addClass('logoshake').off();
+                })
+        }
+    }
+
+
     //////////
     // 小孩走路 //
     //////////
     var boy = BoyWalk();
+
+    boy.talkFlower()
 
     //开始
     $("button:first").click(function() {
@@ -137,7 +154,16 @@ $(function() {
             }).then(function() {
                 //图片还原原地停止状态
                 boy.resetOriginal();
-            })
+            }).then(function() {
+                //增加转身动作 
+                setTimeout(function() {
+                    girl.rotate();
+                    boy.rotate(function() {
+                        //开始logo动画
+                        logo.run()
+                    });
+                }, 1000)
+            });
     })
 
 
