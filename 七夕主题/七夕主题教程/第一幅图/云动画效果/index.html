@@ -15,24 +15,24 @@
     }
     
     .cloud1 {
-        width: 20%;
-        height: 30%;
+        width: 181px;
+        height: 101px;
         left: -5%;
         top: 15%;
-        background: url("http://img.mukewang.com/55addfde0001aec501810101.png") no-repeat;
+        background: url("http://img.mukewang.com/55addfde0001aec501810101.png");
         -webkit-animation-name: smallCloud;
         -webkit-animation-duration: 30s;
         -webkit-animation-iteration: infinite;
         -moz-animation-name: smallCloud;
         -moz-animation-duration: 30s;
-        -moz-animation-iteration: infinite
+        -moz-animation-iteration: infinite;
     }
     
     .cloud2 {
-        width: 20%;
-        height: 30%;
+        width: 301px;
+        height: 140px;
         right: -5%;
-        background: url("http://img.mukewang.com/55addff500016df503010140.png") no-repeat;
+        background: url("http://img.mukewang.com/55addff500016df503010140.png");
         -webkit-animation-name: largeCloud;
         -webkit-animation-duration: 60s;
         -webkit-animation-iteration: infinite;
@@ -125,6 +125,11 @@ $(function() {
     //===================动画处理============================ //
     ////////////////////////////////////////////////////////
 
+    //////////
+    // 小孩走路 //
+    //////////
+    var boy = BoyWalk();
+
 
     //开始
     $("button:first").click(function() {
@@ -135,11 +140,6 @@ $(function() {
         //飘云
         $(".cloud:first").addClass('cloud1')
         $(".cloud:last").addClass('cloud2')
-
-        //////////
-        // 小孩走路 //
-        //////////
-        var boy = BoyWalk();
 
         //开始第一次走路
         boy.walkTo(2000, 0.2)

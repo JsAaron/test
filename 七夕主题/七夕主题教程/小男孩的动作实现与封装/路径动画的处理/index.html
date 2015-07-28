@@ -24,8 +24,6 @@
     </style>
     <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
     <script type="text/javascript" src="http://img.mukewang.com/down/55ac9ea30001ace700000000.js"></script>
-    <script type="text/javascript" src="Swipe.js"></script>
-    <script type="text/javascript" src="Qixi.js"></script>
 </head>
 
 <body>
@@ -47,5 +45,20 @@
         <button>开始</button>
     </div>
 </body>
+<script type="text/javascript">
+$(function() {
+
+    //开始
+    $("button:first").click(function() {
+        //10秒钟 ，走到0.5 也就是页面中间位置
+        var distX = calculateDist('x', 0.5)
+        var distY = calculateDist('y', 0.1)
+        walkRun(10000, distX, distY)
+    })
+
+})
+</script>
+<script type="text/javascript" src="Swipe.js"></script>
+<script type="text/javascript" src="Qixi.js"></script>
 
 </html>
