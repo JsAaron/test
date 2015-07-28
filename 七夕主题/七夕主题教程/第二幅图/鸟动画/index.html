@@ -73,6 +73,8 @@ $(function() {
     //用来临时调整页面
     swipe.scrollTo(container.width(), 0)
 
+    var boy = BoyWalk()
+
     /////////
     //右边飞鸟 //
     /////////
@@ -88,8 +90,6 @@ $(function() {
 
 
     function startRun() {
-
-        var boy = BoyWalk()
 
         boy.walkTo(2000, 0.5)
             .then(function() {
@@ -107,11 +107,13 @@ $(function() {
             .then(function() {
                 //进商店
                 return boy.toShop(2000)
+            }).then(function(){
+                //取花
+                return boy.talkFlower()
             }).then(function() {
                 //飞鸟
                 bird.fly()
-            })
-            .then(function() {
+            }).then(function() {
                 //出商店
                 return boy.outShop(2000)
             }).then(function() {
