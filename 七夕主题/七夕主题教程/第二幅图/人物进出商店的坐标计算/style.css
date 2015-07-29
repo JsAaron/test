@@ -32,7 +32,7 @@
    
    li:nth-child(2) {
        background: #9BCD9B;
-   }a
+   }
    
    li:nth-child(3) {
        background: yellow;
@@ -55,11 +55,6 @@
        height: 291px;
        background: url(http://img.mukewang.com/55ade248000198ae10550582.png) -0px -291px no-repeat;
    }
-   /*人物暂停*/
-   
-   .pauseWalk {
-       -webkit-animation-play-state: paused;
-   }
    
    .slowWalk {
        -webkit-animation-name: person-slow;
@@ -72,16 +67,12 @@
        -moz-animation-timing-function: steps(1, start)
    }
    
-   .slowFlolerWalk {
-       -webkit-animation-name: person-floler-slow;
-       -webkit-animation-duration: 950ms;
-       -webkit-animation-iteration-count: infinite;
-       -webkit-animation-timing-function: step-start;
-       -moz-animation-name: person-floler-slow;
-       -moz-animation-duration: 950ms;
-       -moz-animation-iteration-count: infinite;
-       -moz-animation-timing-function: step-start;
-   }
+   /*人物暂停*/
+
+.pauseWalk {
+    -webkit-animation-play-state: paused;
+}
+   
    /*普通慢走*/
    
    @-webkit-keyframes person-slow {
@@ -117,42 +108,5 @@
        }
        100% {
            background-position: -0px -291px;
-       }
-   }
-   /*带花*/
-   
-   @-webkit-keyframes person-floler-slow {
-       0% {
-           background-position: -453px -0px;
-       }
-       25% {
-           background-position: -904px -0px;
-       }
-       50% {
-           background-position: -451px -0px;
-       }
-       75% {
-           background-position: -753px -0px;
-       }
-       100% {
-           background-position: -300px -0px;
-       }
-   }
-   
-   @-moz-keyframes person-floler-slow {
-       0% {
-           background-position: -453px -0px;
-       }
-       25% {
-           background-position: -904px -0px;
-       }
-       50% {
-           background-position: -451px -0px;
-       }
-       75% {
-           background-position: -753px -0px;
-       }
-       100% {
-           background-position: -300px -0px;
        }
    }
