@@ -147,7 +147,7 @@ body {
     -webkit-transform: 'translateX(0px)';
     -webkit-backface-visibility: hidden;
     -webkit-perspective: 1000;
-    background: url(../images/boy.png) -0px -291px no-repeat;
+    background: url(http://img.mukewang.com/55ade248000198ae10550582.png) -0px -291px no-repeat;
 }
 
 .slowWalk {
@@ -179,7 +179,7 @@ body {
 /*人物暂停*/
 
 .boyOriginal {
-     background-position: -150px -0px;
+    background-position: -150px -0px;
 }
 /*普通慢走*/
 
@@ -263,7 +263,7 @@ body {
     -webkit-animation-iteration-count: 1;
     -webkit-animation-timing-function: step-start;
     -webkit-animation-fill-mode: forwards;
-    
+
     -moz-animation-name: boy-rotate;
     -moz-animation-duration: 850ms;
     -moz-animation-iteration-count: 1;
