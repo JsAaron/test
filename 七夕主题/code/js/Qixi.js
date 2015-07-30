@@ -33,20 +33,20 @@ var Qixi = function() {
 
         //时间设置(时间毫秒）
         setTime: {
-            walkToThird: 6000, //走第一段路，1/3屏幕宽度所用的时间，走完毕背景动
-            walkToMiddle: 6500, //走第二段路，1/2屏幕宽度所用的时间，走到商店
-            walkToEnd: 6500, //走第三段路，走到桥
+            walkToThird: 16000, //走第一段路，1/3屏幕宽度所用的时间，走完毕背景动
+            walkToMiddle: 16500, //走第二段路，1/2屏幕宽度所用的时间，走到商店
+            walkToEnd: 16500, //走第三段路，走到桥
 
-            walkTobridge: 2000, //上桥
-            bridgeWalk: 2000, //桥上走路到中间
+            walkTobridge: 12000, //上桥
+            bridgeWalk: 12000, //桥上走路到中间
 
-            walkToShop: 1500, //进商店时间
-            walkOutShop: 1500, //出商店时间
+            walkToShop: 11500, //进商店时间
+            walkOutShop: 11500, //出商店时间
 
-            openDoorTime: 800, //开门时间
-            shutDoorTime: 500, //关门时间
+            openDoorTime: 1800, //开门时间
+            shutDoorTime: 1500, //关门时间
 
-            waitRotate: 850, //男女等待转身的时间
+            waitRotate: 1850, //男女等待转身的时间
             waitFlower: 800 //模拟取花的等待时间
         },
 
