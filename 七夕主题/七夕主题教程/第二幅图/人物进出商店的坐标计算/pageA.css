@@ -37,7 +37,7 @@ button {
 
 .button {
     position: absolute;
-    top: 80%;
+    bottom: 0;
 }
 /*人物暂停*/
 

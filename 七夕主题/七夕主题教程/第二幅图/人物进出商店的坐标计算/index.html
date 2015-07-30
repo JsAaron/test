@@ -44,15 +44,13 @@
                     <!-- 灯 -->
                     <div class="lamp"></div>
                 </div>
-                <!-- 鸟 -->
-                <div class="bird"></div>
             </li>
             <li> 页面3 </li>
         </ul>
         <div id="boy" class="charector"></div>
-    </div>
-    <div class="button">
-        <button>开始</button>
+        <div class="button">
+            <button>开始</button>
+        </div>
     </div>
 </body>
 <script type="text/javascript">
@@ -77,7 +75,7 @@ $(function() {
 
     function startRun() {
 
-        boy.walkTo(2000, 0.5)
+        boy.walkTo(2000, 0.45)
             .then(function() {
                 //暂停走路
                 boy.stopWalk()
@@ -93,9 +91,6 @@ $(function() {
             .then(function() {
                 //进商店
                 return boy.toShop(2000)
-            }).then(function(){
-                //取花
-                return boy.talkFlower()
             }).then(function() {
                 //出商店
                 return boy.outShop(2000)

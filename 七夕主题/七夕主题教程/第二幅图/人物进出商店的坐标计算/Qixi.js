@@ -138,25 +138,19 @@
         function walkToShop(runTime) {
             var defer = $.Deferred();
             var doorObj = $('.door')
-                //门的坐标
+            //门的坐标
             var offsetDoor = doorObj.offset();
             var doorOffsetLeft = offsetDoor.left;
-            var doorOffsetTop = offsetDoor.top;
             //小孩当前的坐标
-            var offsetBoy = $boy.offset();
+            var offsetBoy     = $boy.offset();
             var boyOffetLeft = offsetBoy.left;
-            var boyOffetTop = offsetBoy.top;
 
             //当前需要移动的坐标
             instanceX = (doorOffsetLeft + doorObj.width() / 2) - (boyOffetLeft + $boy.width() / 2);
 
-            //Y的坐标
-            //translateY = 人物底部距离 - 门的底部距离
-            instanceY = (boyOffetTop + boyHeight) - (doorOffsetTop + doorObj.height());
-
             //开始走路
             var walkPlay = stratRun({
-                transform: 'translateX(' + instanceX + 'px),translateY(-' + instanceY + 'px),scale(0.8,0.8)',
+                transform: 'translateX(' + instanceX + 'px),scale(0.3,0.3)',
                 opacity: 0.1
             }, 2000);
             //走路完毕
@@ -175,7 +169,7 @@
             restoreWalk();
             //开始走路
             var walkPlay = stratRun({
-                    transform: 'translateX(' + instanceX + 'px),translateY(0),,scale(1,1)',
+                    transform: 'translateX(' + instanceX + 'px),scale(1,1)',
                     opacity: 1
                 }, runTime)
                 //走路完毕
@@ -185,18 +179,6 @@
             return defer;
         }
 
-
-        //取花
-        function talkFlower() {
-            //增加延时等待效果
-            var defer = $.Deferred();
-            setTimeout(function() {
-                //取花
-                $boy.addClass('slowFlolerWalk')
-                defer.resolve()
-            }, 1000)
-            return defer
-        }
 
         //计算移动距离
         function calculateDist(direction, proportion) {
@@ -225,11 +207,6 @@
             },
             setColoer: function(value) {
                 $boy.css('background-color', value)
-            },
-            //取花
-            talkFlower: function() {
-                return talkFlower()
             }
-
         }
     }
