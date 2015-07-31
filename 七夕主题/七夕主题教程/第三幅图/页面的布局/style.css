@@ -30,14 +30,6 @@
        position: relative;
    }
    
-   li:nth-child(2) {
-       background: #9BCD9B;
-   }
-   
-   li:nth-child(3) {
-       background: yellow;
-   }
-   
    a {
        position: absolute;
        top: 50%;
