@@ -12,7 +12,7 @@ var Qixi = function() {
     var confi = {
 
         //是否维持缩放比
-        keepZoomRatio: false,
+        keepZoomRatio: true,
 
         //设置容器尺寸
         //否则默认全屏
@@ -33,20 +33,20 @@ var Qixi = function() {
 
         //时间设置(时间毫秒）
         setTime: {
-            walkToThird: 16000, //走第一段路，1/3屏幕宽度所用的时间，走完毕背景动
-            walkToMiddle: 16500, //走第二段路，1/2屏幕宽度所用的时间，走到商店
-            walkToEnd: 16500, //走第三段路，走到桥
+            walkToThird: 6000, //走第一段路，1/3屏幕宽度所用的时间，走完毕背景动
+            walkToMiddle: 6500, //走第二段路，1/2屏幕宽度所用的时间，走到商店
+            walkToEnd: 6500, //走第三段路，走到桥
 
-            walkTobridge: 12000, //上桥
-            bridgeWalk: 12000, //桥上走路到中间
+            walkTobridge: 2000, //上桥
+            bridgeWalk: 2000, //桥上走路到中间
 
-            walkToShop: 11500, //进商店时间
-            walkOutShop: 11500, //出商店时间
+            walkToShop: 1500, //进商店时间
+            walkOutShop: 1500, //出商店时间
 
-            openDoorTime: 1800, //开门时间
-            shutDoorTime: 1500, //关门时间
+            openDoorTime: 800, //开门时间
+            shutDoorTime: 500, //关门时间
 
-            waitRotate: 1850, //男女等待转身的时间
+            waitRotate: 850, //男女等待转身的时间
             waitFlower: 800 //模拟取花的等待时间
         },
 
@@ -63,10 +63,10 @@ var Qixi = function() {
     }
 
     //如果启动了dubug状态
-    var debug = 0
+    var debug = 500
     if (debug) {
         $.each(confi.setTime, function(key, val) {
-            confi.setTime[key] = debug
+            confi.setTime[key] = 500
         })
     }
 
@@ -88,8 +88,8 @@ var Qixi = function() {
     //页面容器
     var container = $("#content");
     //设置新的页面容器大小
-    container.css(confi.layer)
-        //页面可视区域
+    container.css(confi.layer);
+    //页面可视区域
     var visualWidth = container.width()
     var visualHeight = container.height()
 
@@ -114,6 +114,15 @@ var Qixi = function() {
         var data = getValue('.c_background_middle')
         return data.top
     }()
+
+    var elemProportion = $(document).width() / 1440;
+    //设置一下缩放比例与基点位置
+    function scaleOrigin(elem) {
+        elem.css({
+            transformOrigin: '50% 0%',
+            transform: 'scale(' + elemProportion + ')'
+        });
+    }
 
     //动画结束事件
     var animationEnd = (function() {
@@ -207,15 +216,17 @@ var Qixi = function() {
     boy.walkTo(confi.setTime.walkToThird, 0.6)
         .then(function() {
             //开始滚动页面
-            scrollTo(confi.setTime.walkToMiddle, 1)
-                //第二次走路
-            return boy.walkTo(confi.setTime.walkToMiddle, 0.5)
+            scrollTo(confi.setTime.walkToMiddle, 1);
+        }).then(function() {
+            //第二次走路
+            return boy.walkTo(confi.setTime.walkToMiddle, 0.4)
         }).then(function() {
             //飞鸟
             bird.fly();
         }).then(function() {
             //暂停走路
             boy.stopWalk();
+        }).then(function() {
             //去商店
             return BoyToShop(boy);
         }).then(function() {
@@ -263,9 +274,12 @@ var Qixi = function() {
         var boyWidth = $boy.width();
         var boyHeight = $boy.height();
 
+        //设置元素的缩放
+        scaleOrigin($boy)
+
         //设置下高度    
         $boy.css({
-            top: pathY - boyHeight + 25
+            top: pathY - boyHeight * elemProportion
         })
 
         //暂停走路
@@ -319,24 +333,19 @@ var Qixi = function() {
                 //门的坐标
             var offsetDoor = doorObj.offset();
             var doorOffsetLeft = offsetDoor.left;
-            var doorOffsetTop = offsetDoor.top;
             //小孩当前的坐标
             var offsetBoy = $boy.offset();
             var boyOffetLeft = offsetBoy.left;
-            var boyOffetTop = offsetBoy.top;
 
             //当前需要移动的坐标
             instanceX = (doorOffsetLeft + doorObj.width() / 2) - (boyOffetLeft + $boy.width() / 2);
-
-            //Y的坐标
-            //translateY = 人物底部距离 - 门的底部距离
-            instanceY = (boyOffetTop + boyHeight) - (doorOffsetTop + doorObj.height());
-
-            //开始走路
+            var instanceY = (offsetBoy.top + $boy.height() * elemProportion) - (offsetDoor.top + doorObj.height())
+            console.log(instanceX,instanceY)
+                //开始走路
             var walkPlay = stratRun({
-                transform: 'translateX(' + instanceX + 'px),translateY(-' + instanceY + 'px),scale(0.8,0.8)',
+                transform: 'translate(' + instanceX + 'px,-200px)',
                 opacity: 0.1
-            }, 2000);
+            }, 20000);
             //走路完毕
             walkPlay.done(function() {
                 $boy.css({
@@ -353,7 +362,7 @@ var Qixi = function() {
             restoreWalk();
             //开始走路
             var walkPlay = stratRun({
-                    transform: 'translate(' + instanceX + 'px,0px),scale(1,1)',
+                    transform: 'translate(' + instanceX + 'px,0px)',
                     opacity: 1
                 }, runTime)
                 //走路完毕
@@ -581,7 +590,7 @@ var Qixi = function() {
     function Hmlt5Audio(url, loop) {
         var audio = new Audio(url);
         audio.autoplay = true;
-        audio.loop = loop; //是否循环
+        audio.loop = loop || false; //是否循环
         audio.play();
         return {
             end: function(callback) {

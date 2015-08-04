@@ -11,10 +11,9 @@
     /*主体部分*/
     
     #content {
-        width: 60%;
-        height: 60%;
-        top: 20%;
-        left: 20%;
+        width: 100%;
+        height: 100%;
+        /*top: 20%;*/
         overflow: hidden;
         position: absolute;
     }

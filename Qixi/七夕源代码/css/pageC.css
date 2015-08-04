@@ -10,7 +10,7 @@
 .c_background_top{
     width: 100%;
     height: 71.6%;
-    background-image: url("../images/background/c_background_top.png");
+    background-image: url("http://img.mukewang.com/55ade19b0001d92c14410645.png");
     background-size: 100% 100%;
 }
 
@@ -18,14 +18,14 @@
 .c_background_middle{
     width: 100%;
     height: 13.1%;
-    background-image: url("../images/background/c_background_middle.png");
+    background-image: url("http://img.mukewang.com/55ade1b3000135c114410118.png");
     background-size: 100% 100%;
 }
 
 .c_background_botton{
     width: 100%;
     height: 15.3%;
-    background-image: url("../images/background/c_background_botton.png");
+    background-image: url("http://img.mukewang.com/55ade1c30001db5d14410138.png");
     background-size: 100% 100%;
 }
 
@@ -80,7 +80,7 @@
 /*小女孩*/
 
 .girl {
-    background: url(../images/girl.png) -755px -0px no-repeat;
+    background: url(http://img.mukewang.com/55ade30d000100dc10570291.png) -755px -0px no-repeat;
     position: absolute;
     right: 40%;
     top: 37%;
@@ -192,7 +192,7 @@
     height: 15px;
     top: 13%;
     left: 35%;
-    background: url(../images/water.png) -261px -0px no-repeat;
+    background: url(http://img.mukewang.com/55ade1e000010f2908540027.png) -261px -0px no-repeat;
 }
 
 .water_2 {
@@ -200,7 +200,7 @@
     height: 9px;
     top: 25%;
     left: 45%;
-    background: url(../images/water.png) -693px -0px no-repeat;
+    background: url(http://img.mukewang.com/55ade1e000010f2908540027.png) -693px -0px no-repeat;
     -webkit-animation-delay: 2s;
     -moz-animation-delay: 2s;
 }
@@ -210,7 +210,7 @@
     height: 29px;
     top: 50%;
     left: 15%;
-    background: url(../images/water.png) -0px -0px no-repeat;
+    background: url(http://img.mukewang.com/55ade1e000010f2908540027.png) -0px -0px no-repeat;
     -webkit-animation-delay: 1s;
     -moz-animation-delay: 1s;
 }
@@ -220,7 +220,7 @@
     height: 12px;
     top: 70%;
     left: 30%;
-    background: url(../images/water.png) -392px -0px no-repeat;
+    background: url(http://img.mukewang.com/55ade1e000010f2908540027.png) -392px -0px no-repeat;
     -webkit-animation-delay: 3s;
     -moz-animation-delay: 3s;
 }
@@ -274,7 +274,7 @@
     position: absolute;
     width: 30px;
     height: 31px;
-    background-image: url("../images/stars.png");
+    background-image: url("http://img.mukewang.com/55ade1fe00016b8900300031.png");
     -webkit-animation-name: flash;
     -webkit-animation-timing-function: ease-in-out;
     -webkit-animation-iteration-count: infinite;
@@ -351,7 +351,7 @@
 .logo {
     width: 185px;
     height: 81px;
-    background-image: url(../images/logo.png);
+    background-image: url(http://img.mukewang.com/55ade2110001708401850081.png);
     z-index: 999999;
     position: absolute;
     left: 50%;

@@ -41,6 +41,15 @@
     <script type="text/javascript">
         var swipe = Swipe($("#content"));
 
+        var $boy = $("#boy");
+
+        //设置一下缩放比例与基点位置
+        var proportion =  $(document).width() / 1440;
+        $boy.css({
+            transformOrigin :'50% 0%',
+            transform       : 'scale('+ proportion +')'
+        })
+
         //获取数据
         var getValue = function(className) {
             var $elem = $('' + className + '')
@@ -51,18 +60,16 @@
             }
         }
         
-        //路的Y轴
+        //路的中间到顶部的距离
         var pathY = function() {
             var data = getValue('.a_background_middle')
             return data.top + data.height / 2
         }()
 
-        var $boy = $("#boy");
         var boyHeight = $boy.height();
-
         //修正小男孩的正确位置
         $boy.css({
-            top: pathY - boyHeight + 25
+            top       : pathY - (boyHeight * proportion)
         })
     </script>
 </body>
