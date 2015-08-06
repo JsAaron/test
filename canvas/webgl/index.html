@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>webgl</title>
+</head>
+<body>
+	<canvas id="canvas">canvas</canvas>
+</body>
+	
+	<script type="text/javascript">
+
+		var canvas = document.getElementById('canvas')
+
+		canvas.width = 500
+		canvas.height = 300
+
+		var webgl = canvas.getContext('webgl')
+
+		webgl.clearColor(0.0, 0.0, 0.0, 1.0);  
+		webgl.clear(webgl.COLOR_BUFFER_BIT);  
+
+		console.dir(webgl)
+
+
+
+	</script>
+
+</html>
